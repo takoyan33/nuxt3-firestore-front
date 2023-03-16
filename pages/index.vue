@@ -1,6 +1,4 @@
 <script setup>
-/* This brings the products from /api/products and 
-   saves them in the "data" constant 👇 */
 const { data } = await useFetch("/api/products");
 </script>
 <template>
