@@ -10,5 +10,6 @@ export default {
   async asyncData({ error }) {
     error({ statusCode: 404 });
   },
+
 };
 </script>

@@ -8,6 +8,8 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "firebase-functions": "^4.2.1",
+    "firebase-functions-test": "^3.0.0",
     "nuxt": "^3.2.3"
   },
   "dependencies": {

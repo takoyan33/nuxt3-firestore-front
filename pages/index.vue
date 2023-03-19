@@ -1,87 +1,76 @@
 <script setup>
 const { data } = await useFetch("/api/products");
+
+const products = ref(data);
+
+const todo = ref({
+  name: "",
+  content: "",
+});
+
+const completeTask = (product) => {
+  // カートに商品を追加する処理
+};
+
+const addTodo = async () => {
+  const response = await fetch("/api/products", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(todo.value),
+  });
+
+  if (response.ok) {
+    todo.value.name = "";
+    todo.value.content = "";
+    products.value = [...products.value, todo.value];
+  }
+};
 </script>
+
 <template>
-  <div class="container">
-    <div class="row">
-      <div
-        v-for="(product, index) in data"
-        :key="'product-' + index"
-        class="col-md-4"
-      >
-        <div class="card mb-3">
-          <img :src="product.photoURL" class="card-img-top" />
-          <div class="card-body">
-            <h5 class="card-title">
-              {{ product.name }}
-            </h5>
-            <p class="card-text">
-              {{ product.description }}
-            </p>
-            <div class="d-grid">
-              <button
-                @click="addToCart(product)"
-                class="btn btn-outline-primary"
-              >
-                Add to cart
-              </button>
-            </div>
-            <v-btn class="ma-2" color="primary" dark>
-              Accept
-              <v-icon dark right> mdi-checkbox-marked-circle </v-icon>
-            </v-btn>
-            <v-btn class="ma-2" color="red" dark>
-              Decline
-              <v-icon dark right> mdi-cancel </v-icon>
-            </v-btn>
-          </div>
+  <div>
+    <div class="container">
+      <div class="row">
+        <div
+          variant="outlined"
+          v-for="(product, index) in data"
+          :key="'product-' + index"
+          class="col-md-4"
+        >
+          <h2 class="text-h6 my-4">
+            {{ product.name }}
+          </h2>
+          <p class="my-2">
+            {{ product.content }}
+          </p>
+          <NuxtLink :to="`/todos/${product.id}`">aaaaa</NuxtLink>
+          <v-btn variant="outlined" @click="completeTask(product)" class="my-2">
+            完了する
+          </v-btn>
+          <v-divider></v-divider>
         </div>
       </div>
     </div>
 
-    <ShoppingCart v-model="shoppingCart" />
+    <form @submit.prevent="addTodo">
+      <div class="form-group">
+        <h2 class="my-2">TODOの追加</h2>
+        <label for="name">名前:</label>
+        <v-text-field v-model="todo.name" type="text" id="name"></v-text-field>
+      </div>
+      <div class="form-group">
+        <label for="content">内容:</label>
+        <v-text-field
+          v-model="todo.content"
+          type="text"
+          id="content"
+        ></v-text-field>
+      </div>
+      <v-btn variant="outlined" type="submit">追加</v-btn>
+    </form>
+    
   </div>
+
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-      shoppingCart: [],
-    };
-  },
-  mounted() {
-    this.shoppingCart = JSON.parse(
-      localStorage.getItem("shoppingCart") || "[]"
-    );
-  },
-  watch: {
-    shoppingCart: {
-      handler(newValue) {
-        localStorage.setItem("shoppingCart", JSON.stringify(newValue));
-      },
-      deep: true,
-    },
-  },
-  methods: {
-    addToCart(product) {
-      let exists = false;
-
-      for (const cartItem of this.shoppingCart) {
-        if (cartItem.uuid === product.uuid) {
-          cartItem.amount = cartItem.amount + 1;
-          exists = true;
-          break;
-        }
-      }
-
-      if (!exists) {
-        this.shoppingCart.push({
-          ...product,
-          amount: 1,
-        });
-      }
-    },
-  },
-};
-</script>
