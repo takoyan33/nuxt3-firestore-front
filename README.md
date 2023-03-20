@@ -1,42 +1,36 @@
-# Nuxt 3 Minimal Starter
+## プロジェクトのタイトル
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Nuxt todo App
 
-## Setup
+https://vuejs-app-front.web.app/
 
-Make sure to install the dependencies:
+## プロジェクトの概要説明
 
-```bash
-# yarn
+Nuxt todo Appは、Nuxt3を用いたTodoサイトです。
+
+## 使用言語、環境
+
+使用言語：TypeScript
+
+フレームワーク：React,Next.js
+
+サーバー：Firebase hosting
+
+データベース：Cloud Firestore (NoSQL)
+
+## 使い方
+
+git clone
+
 yarn install
 
-# npm
-npm install
+yarn nuxt dev
 
-# pnpm
-pnpm install
-```
+### こだわりポイント
 
-## Development Server
 
-Start the development server on http://localhost:3000
+### 今後の計画
 
-```bash
-npm run dev
-```
+・クラッド処理の実現
 
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+・単一データの取得
