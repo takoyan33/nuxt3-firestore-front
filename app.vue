@@ -12,7 +12,3 @@
     </v-app>
   </div>
 </template>
-
-<script>
-const title = "Nuxt3todoアプリ";
-</script>

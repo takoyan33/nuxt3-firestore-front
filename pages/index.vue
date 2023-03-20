@@ -8,25 +8,25 @@ const todo = ref({
   content: "",
 });
 
-const completeTask = (product) => {
-  // カートに商品を追加する処理
-};
+// const completeTask = (product) => {
+//   // カートに商品を追加する処理
+// };
 
-const addTodo = async () => {
-  const response = await fetch("/api/products", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(todo.value),
-  });
+// const addTodo = async () => {
+//   const response = await fetch("/api/products", {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(todo.value),
+//   });
 
-  if (response.ok) {
-    todo.value.name = "";
-    todo.value.content = "";
-    products.value = [...products.value, todo.value];
-  }
-};
+//   if (response.ok) {
+//     todo.value.name = "";
+//     todo.value.content = "";
+//     products.value = [...products.value, todo.value];
+//   }
+// };
 </script>
 
 <template>
@@ -45,7 +45,7 @@ const addTodo = async () => {
           <p class="my-2">
             {{ product.content }}
           </p>
-          <NuxtLink :to="`/todos/${product.id}`">aaaaa</NuxtLink>
+          <NuxtLink :to="`/todos/${product.uuid}`">詳しくはこちら</NuxtLink>
           <v-btn variant="outlined" @click="completeTask(product)" class="my-2">
             完了する
           </v-btn>
@@ -70,7 +70,5 @@ const addTodo = async () => {
       </div>
       <v-btn variant="outlined" type="submit">追加</v-btn>
     </form>
-    
   </div>
-
 </template>
