@@ -1,12 +1,12 @@
 <script setup>
 const { data } = await useFetch("/api/products");
 
-const products = ref(data);
+// const products = ref(data);
 
-const todo = ref({
-  name: "",
-  content: "",
-});
+// const todo = ref({
+//   name: "",
+//   content: "",
+// });
 
 // const completeTask = (product) => {
 //   // カートに商品を追加する処理
@@ -31,30 +31,30 @@ const todo = ref({
 
 <template>
   <div>
-    <div class="container">
-      <div class="row">
-        <div
-          variant="outlined"
-          v-for="(product, index) in data"
-          :key="'product-' + index"
-          class="col-md-4"
-        >
-          <h2 class="text-h6 my-4">
-            {{ product.name }}
-          </h2>
-          <p class="my-2">
-            {{ product.content }}
-          </p>
-          <NuxtLink :to="`/todos/${product.uuid}`">詳しくはこちら</NuxtLink>
-          <v-btn variant="outlined" @click="completeTask(product)" class="my-2">
-            完了する
-          </v-btn>
-          <v-divider></v-divider>
-        </div>
+    <div class="d-flex align-center flex-column">
+      <div v-for="(product, index) in data" :key="'product-' + index" class="my-4">
+        <v-card width="400">
+          <div variant="outlined" class="col-md-4 my-4 mb-8">
+            <h2 class="text-h6 my-4 p-2">
+              {{ product.name }}
+            </h2>
+            <p class="my-2">
+              {{ product.content }}
+            </p>
+            <NuxtLink :to="`/todos/${product.uuid}`">詳しくはこちら</NuxtLink>
+            <v-btn
+              variant="outlined"
+              @click="completeTask(product)"
+              class="my-2"
+            >
+              完了する
+            </v-btn>
+          </div>
+        </v-card>
       </div>
     </div>
 
-    <form @submit.prevent="addTodo">
+    <!-- <form @submit.prevent="addTodo">
       <div class="form-group">
         <h2 class="my-2">TODOの追加</h2>
         <label for="name">名前:</label>
@@ -69,6 +69,6 @@ const todo = ref({
         ></v-text-field>
       </div>
       <v-btn variant="outlined" type="submit">追加</v-btn>
-    </form>
+    </form> -->
   </div>
 </template>

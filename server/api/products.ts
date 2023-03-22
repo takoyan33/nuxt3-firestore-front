@@ -5,20 +5,16 @@ const credential = firebaseAdmin.credential;
 
 const apps = getApps();
 
-if (!apps.length) {
-  initializeApp({
-    credential: credential.cert(
-      "./vuejs-app-front-firebase-adminsdk-bn6fk-a5a4028c0f.json"
-    ),
-  });
-}
+initializeApp({
+  credential: credential.cert(
+    "./vuejs-app-front-firebase-adminsdk-bn6fk-a5a4028c0f.json"
+  ),
+});
 
 export default async (request: any, response: any) => {
   const db = getFirestore();
-  let productsData = [];
-
   const productsSnap = await db.collection("products").get();
-  productsData = productsSnap.docs.map((doc) => {
+  const productsData = productsSnap.docs.map((doc) => {
     return {
       uuid: doc.id,
       ...doc.data(),

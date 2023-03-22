@@ -1,11 +1,12 @@
 <template>
   <v-app>
+    <Header />
     <v-content>
       <v-main>
         <v-container>
           <div>
-            <h2 class="text-center">404</h2>
-            <p class="text-center">ページが見つかりません。</p>
+            <h2 class="text-center my-2 mt-10">404</h2>
+            <p class="text-center my-2">ページが見つかりません。</p>
           </div>
         </v-container>
       </v-main>
