@@ -1,13 +1,10 @@
 <template>
   <v-container>
-    <h2 class="text-h4 my-4 text-center">About</h2>
+    <h2 class="text-h5">Aboutページ</h2>
     <v-card class="my-5">
       <v-card-text>
         このアプリはNuxt.jsを用いたTodoアプリです。
         スタイリングはVuetifyを使っています。
-        <br />
-        <br />
-        使用技術は、フロントエンドがVue.js,Nuxt3、バックエンドがFirestoreを利用しています。
       </v-card-text>
     </v-card>
   </v-container>

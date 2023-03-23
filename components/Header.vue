@@ -13,6 +13,13 @@
           >About</NuxtLink
         >
       </p>
+      <!-- <p class="mt-3">
+        <NuxtLink
+          :to="`/about`"
+          class="text-purple-lighten-5 text-decoration-none mr-16"
+          >API</NuxtLink
+        >
+      </p> -->
     </v-container>
   </div>
 </template>

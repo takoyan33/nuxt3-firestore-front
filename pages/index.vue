@@ -1,47 +1,53 @@
 <script setup>
-const { data } = await useFetch("/api/products");
+import { ref, computed } from "vue";
 
-// const products = ref(data);
+const { data } = useFetch("/api/products");
+const searchQuery = ref("");
 
-// const todo = ref({
-//   name: "",
-//   content: "",
-// });
+const filteredProducts = computed(() => {
+  if (!data.value) {
+    return [];
+  }
+  const query = searchQuery.value.trim().toLowerCase();
+  if (!query) {
+    return data.value;
+  }
+  return data.value.filter((product) => {
+    return product.name.toLowerCase().includes(query);
+  });
+});
 
-// const completeTask = (product) => {
-//   // カートに商品を追加する処理
-// };
-
-// const addTodo = async () => {
-//   const response = await fetch("/api/products", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(todo.value),
-//   });
-
-//   if (response.ok) {
-//     todo.value.name = "";
-//     todo.value.content = "";
-//     products.value = [...products.value, todo.value];
-//   }
-// };
+function completeTask(product) {
+  // your completeTask function logic here
+  alert("現在実装途中です")
+}
 </script>
 
 <template>
   <div>
+    <h2 class="text-h4 text-center">Todoの一覧</h2>
+    <p class="text-center">全{{ data.length }}件</p>
+    <div class="text-center my-4">
+      <v-text-field
+        v-model="searchQuery"
+        label="タスクを検索する"
+      ></v-text-field>
+    </div>
+
     <div class="d-flex align-center flex-column">
-      <div v-for="(product, index) in data" :key="'product-' + index" class="my-4">
+      <div
+        v-for="(product, index) in filteredProducts"
+        :key="'product-' + index"
+        class="my-4"
+      >
         <v-card width="400">
-          <div variant="outlined" class="col-md-4 my-4 mb-8">
+          <div variant="outlined" class="col-md-4 my-4 mb-8 px-4">
             <h2 class="text-h6 my-4 p-2">
               {{ product.name }}
             </h2>
             <p class="my-2">
               {{ product.content }}
             </p>
-            <NuxtLink :to="`/todos/${product.uuid}`">詳しくはこちら</NuxtLink>
             <v-btn
               variant="outlined"
               @click="completeTask(product)"
@@ -53,22 +59,5 @@ const { data } = await useFetch("/api/products");
         </v-card>
       </div>
     </div>
-
-    <!-- <form @submit.prevent="addTodo">
-      <div class="form-group">
-        <h2 class="my-2">TODOの追加</h2>
-        <label for="name">名前:</label>
-        <v-text-field v-model="todo.name" type="text" id="name"></v-text-field>
-      </div>
-      <div class="form-group">
-        <label for="content">内容:</label>
-        <v-text-field
-          v-model="todo.content"
-          type="text"
-          id="content"
-        ></v-text-field>
-      </div>
-      <v-btn variant="outlined" type="submit">追加</v-btn>
-    </form> -->
   </div>
 </template>
