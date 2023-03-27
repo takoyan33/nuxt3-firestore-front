@@ -6,22 +6,22 @@
           >Nuxt Todo App
         </NuxtLink>
       </h4>
-      <p class="mt-3">
-        <NuxtLink
-          :to="`/about`"
-          class="text-purple-lighten-5 text-decoration-none mr-16"
-          >About</NuxtLink
-        >
-      </p>
-      <!-- <p class="mt-3">
-        <NuxtLink
-          :to="`/about`"
-          class="text-purple-lighten-5 text-decoration-none mr-16"
-          >API</NuxtLink
-        >
-      </p> -->
+      <div class="d-flex justify-space-between">
+        <p class="mt-3">
+          <NuxtLink
+            :to="`/about`"
+            class="text-purple-lighten-5 text-decoration-none mr-16"
+            >About</NuxtLink
+          >
+        </p>
+        <p class="mt-3">
+          <NuxtLink
+            :to="`/api`"
+            class="text-purple-lighten-5 text-decoration-none mr-16"
+            >API</NuxtLink
+          >
+        </p>
+      </div>
     </v-container>
   </div>
 </template>
-
-<script></script>

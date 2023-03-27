@@ -1,7 +1,14 @@
 <script setup>
 import { ref, computed } from "vue";
 
-const { data } = useFetch("/api/products");
+// const { data } = useFetch("/api/products");
+const { data } = useFetch("/api/products", {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+    "Sort-Order": "desc",
+  },
+});
 const searchQuery = ref("");
 
 const filteredProducts = computed(() => {
@@ -18,8 +25,7 @@ const filteredProducts = computed(() => {
 });
 
 function completeTask(product) {
-  // your completeTask function logic here
-  alert("現在実装途中です")
+  product.done = !product.done;
 }
 </script>
 
@@ -40,23 +46,31 @@ function completeTask(product) {
         :key="'product-' + index"
         class="my-4"
       >
-        <v-card width="400">
-          <div variant="outlined" class="col-md-4 my-4 mb-8 px-4">
-            <h2 class="text-h6 my-4 p-2">
-              {{ product.name }}
-            </h2>
-            <p class="my-2">
-              {{ product.content }}
-            </p>
-            <v-btn
-              variant="outlined"
-              @click="completeTask(product)"
-              class="my-2"
+        <v-hover>
+          <template v-slot:default="{ isHovering, props }">
+            <v-card
+              width="400"
+              v-bind="props"
+              :color="isHovering ? 'primary' : undefined"
             >
-              完了する
-            </v-btn>
-          </div>
-        </v-card>
+              <div variant="outlined" class="col-md-4 my-4 mb-8 px-4">
+                <p class="text-h6 my-4 p-2">
+                  {{ product.name }}
+                </p>
+                <p class="my-2">
+                  {{ product.content }}
+                </p>
+                <v-btn
+                  variant="outlined"
+                  @click="completeTask(product)"
+                  class="my-2"
+                >
+                  {{ product.done ? "未完了に戻す" : "完了する" }}
+                </v-btn>
+              </div>
+            </v-card>
+          </template>
+        </v-hover>
       </div>
     </div>
   </div>
