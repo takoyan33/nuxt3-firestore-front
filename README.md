@@ -16,6 +16,8 @@ Nuxt todo Appは、Nuxt3を用いたTodoサイトです。
 
 サーバー：Firebase hosting
 
+テストツール： vitest
+
 データベース：Cloud Firestore (NoSQL)
 
 ## 使い方
