@@ -1,7 +1,8 @@
 <script setup>
 import { ref, computed } from "vue";
+import { doc, onSnapshot, getDoc, updateDoc } from "firebase/firestore";
+import { db } from "../server/api/products";
 
-// const { data } = useFetch("/api/products");
 const { data } = useFetch("/api/products", {
   method: "GET",
   headers: {
@@ -9,6 +10,7 @@ const { data } = useFetch("/api/products", {
     "Sort-Order": "desc",
   },
 });
+
 const searchQuery = ref("");
 
 const filteredProducts = computed(() => {
@@ -24,8 +26,12 @@ const filteredProducts = computed(() => {
   });
 });
 
-function completeTask(product) {
-  product.done = !product.done;
+async function completeTask(product) {
+  const done = !product.done;
+  const docRef = doc(db, `prodcuts`, product.uuid);
+  await updateDoc(docRef, {
+    done: done,
+  });
 }
 </script>
 
