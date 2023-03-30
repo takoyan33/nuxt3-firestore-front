@@ -20,6 +20,8 @@ Nuxt todo Appは、Nuxt3を用いたTodoサイトです。
 
 データベース：Cloud Firestore (NoSQL)
 
+コンポーネント管理： Storybook
+
 ## 使い方
 
 git clone
