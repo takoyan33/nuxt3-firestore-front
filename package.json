@@ -6,15 +6,27 @@
     "test": "vitest",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "devDependencies": {
+    "@babel/core": "^7.21.3",
+    "@storybook/addon-actions": "^6.5.16",
+    "@storybook/addon-essentials": "^6.5.16",
+    "@storybook/addon-interactions": "^6.5.16",
+    "@storybook/addon-links": "^6.5.16",
+    "@storybook/builder-vite": "^0.4.2",
+    "@storybook/testing-library": "^0.0.13",
+    "@storybook/vue3": "^6.5.16",
     "@vue/test-utils": "^2.3.2",
+    "babel-loader": "^8.3.0",
     "firebase-functions": "^4.2.1",
     "firebase-functions-test": "^3.0.0",
     "jsdom": "^21.1.1",
     "nuxt": "^3.2.3",
-    "vitest": "^0.29.8"
+    "vitest": "^0.29.8",
+    "vue-loader": "^16.8.3"
   },
   "dependencies": {
     "firebase-admin": "^11.5.0",

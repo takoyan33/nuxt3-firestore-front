@@ -1,13 +1,11 @@
 <template>
-  <v-footer
-    :absolute="!fixed"
-    app
+  <div
     class="bg-purple-darken-2 text-center mx-auto"
   >
     <h4 class="text-center">
       &copy; {{ new Date().getFullYear() }} Nuxt Todo App
     </h4>
-  </v-footer>
+  </div>
 </template>
 
 <script></script>
