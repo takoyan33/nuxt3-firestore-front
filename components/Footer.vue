@@ -4,9 +4,9 @@
     app
     class="bg-purple-darken-2 text-center mx-auto"
   >
-    <p class="text-center">
+    <h4 class="text-center">
       &copy; {{ new Date().getFullYear() }} Nuxt Todo App
-    </p>
+    </h4>
   </v-footer>
 </template>
 
