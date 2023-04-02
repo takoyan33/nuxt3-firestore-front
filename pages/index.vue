@@ -11,7 +11,7 @@ const { data } = useFetch("/api/todos", {
 });
 const searchQuery = ref("");
 
-const filteredProducts = computed(() => {
+const filteredTodos = computed(() => {
   if (!data.value) {
     return [];
   }
@@ -19,13 +19,13 @@ const filteredProducts = computed(() => {
   if (!query) {
     return data.value;
   }
-  return data.value.filter((product) => {
-    return product.name.toLowerCase().includes(query);
+  return data.value.filter((todo) => {
+    return todo.name.toLowerCase().includes(query);
   });
 });
 
-function completeTask(product) {
-  product.done = !product.done;
+function completeTask(todo) {
+  todo.done = !todo.done;
 }
 </script>
 
@@ -42,8 +42,8 @@ function completeTask(product) {
 
     <div class="d-flex align-center flex-column">
       <div
-        v-for="(product, index) in filteredProducts"
-        :key="'product-' + index"
+        v-for="(todo, index) in filteredTodos"
+        :key="'todo-' + index"
         class="my-4"
       >
         <v-hover>
@@ -54,23 +54,26 @@ function completeTask(product) {
               :color="isHovering ? 'primary' : undefined"
             >
               <nuxt-link
-                :to="'/todos/' + product.uuid"
+                :to="'/todos/' + todo.uuid"
                 class="text-decoration-none text-black"
               >
                 <div variant="outlined" class="col-md-4 my-4 mb-8 px-4">
                   <p class="text-h6 my-4 p-2">
-                    {{ product.name }}
+                    {{ todo.name }}
                   </p>
                   <p class="my-2">
-                    {{ product.content }}
+                    {{ todo.content }}
                   </p>
-                  <v-btn
+                  <p class="my-2">
+                    作成日：　{{ todo.date }}
+                  </p>
+                  <!-- <v-btn
                     variant="outlined"
-                    @click="completeTask(product)"
+                    @click="completeTask(todo)"
                     class="my-2"
                   >
-                    {{ product.done ? "未完了に戻す" : "完了する" }}
-                  </v-btn>
+                    {{ todo.done ? "未完了に戻す" : "完了する" }}
+                  </v-btn> -->
                 </div>
               </nuxt-link>
             </v-card>
