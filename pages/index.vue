@@ -48,27 +48,29 @@ function completeTask(product) {
       >
         <v-hover>
           <template v-slot:default="{ isHovering, props }">
-            <v-card
-              width="400"
-              v-bind="props"
-              :color="isHovering ? 'primary' : undefined"
-            >
-              <div variant="outlined" class="col-md-4 my-4 mb-8 px-4">
-                <p class="text-h6 my-4 p-2">
-                  {{ product.name }}
-                </p>
-                <p class="my-2">
-                  {{ product.content }}
-                </p>
-                <v-btn
-                  variant="outlined"
-                  @click="completeTask(product)"
-                  class="my-2"
-                >
-                  {{ product.done ? "未完了に戻す" : "完了する" }}
-                </v-btn>
-              </div>
-            </v-card>
+            <nuxt-link :to="'/todos/' + product.id">
+              <v-card
+                width="400"
+                v-bind="props"
+                :color="isHovering ? 'primary' : undefined"
+              >
+                <div variant="outlined" class="col-md-4 my-4 mb-8 px-4">
+                  <p class="text-h6 my-4 p-2">
+                    {{ product.name }}
+                  </p>
+                  <p class="my-2">
+                    {{ product.content }}
+                  </p>
+                  <v-btn
+                    variant="outlined"
+                    @click="completeTask(product)"
+                    class="my-2"
+                  >
+                    {{ product.done ? "未完了に戻す" : "完了する" }}
+                  </v-btn>
+                </div>
+              </v-card>
+            </nuxt-link>
           </template>
         </v-hover>
       </div>
