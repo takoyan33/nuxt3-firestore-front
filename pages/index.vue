@@ -1,8 +1,8 @@
 <script setup>
 import { ref, computed } from "vue";
 
-// const { data } = useFetch("/api/products");
-const { data } = useFetch("/api/products", {
+// const { data } = useFetch("/api/todos");
+const { data } = useFetch("/api/todos", {
   method: "GET",
   headers: {
     "Content-Type": "application/json",
@@ -53,21 +53,26 @@ function completeTask(product) {
               v-bind="props"
               :color="isHovering ? 'primary' : undefined"
             >
-              <div variant="outlined" class="col-md-4 my-4 mb-8 px-4">
-                <p class="text-h6 my-4 p-2">
-                  {{ product.name }}
-                </p>
-                <p class="my-2">
-                  {{ product.content }}
-                </p>
-                <v-btn
-                  variant="outlined"
-                  @click="completeTask(product)"
-                  class="my-2"
-                >
-                  {{ product.done ? "未完了に戻す" : "完了する" }}
-                </v-btn>
-              </div>
+              <nuxt-link
+                :to="'/todos/' + product.uuid"
+                class="text-decoration-none text-black"
+              >
+                <div variant="outlined" class="col-md-4 my-4 mb-8 px-4">
+                  <p class="text-h6 my-4 p-2">
+                    {{ product.name }}
+                  </p>
+                  <p class="my-2">
+                    {{ product.content }}
+                  </p>
+                  <v-btn
+                    variant="outlined"
+                    @click="completeTask(product)"
+                    class="my-2"
+                  >
+                    {{ product.done ? "未完了に戻す" : "完了する" }}
+                  </v-btn>
+                </div>
+              </nuxt-link>
             </v-card>
           </template>
         </v-hover>
