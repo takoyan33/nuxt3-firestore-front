@@ -1,8 +1,8 @@
 <script setup>
 import { ref, computed } from "vue";
 
-// const { data } = useFetch("/api/products");
-const { data } = useFetch("/api/products", {
+// const { data } = useFetch("/api/todos");
+const { data } = useFetch("/api/todos", {
   method: "GET",
   headers: {
     "Content-Type": "application/json",
@@ -48,11 +48,14 @@ function completeTask(product) {
       >
         <v-hover>
           <template v-slot:default="{ isHovering, props }">
-            <nuxt-link :to="'/todos/' + product.id">
-              <v-card
-                width="400"
-                v-bind="props"
-                :color="isHovering ? 'primary' : undefined"
+            <v-card
+              width="400"
+              v-bind="props"
+              :color="isHovering ? 'primary' : undefined"
+            >
+              <nuxt-link
+                :to="'/todos/' + product.uuid"
+                class="text-decoration-none text-black"
               >
                 <div variant="outlined" class="col-md-4 my-4 mb-8 px-4">
                   <p class="text-h6 my-4 p-2">
@@ -69,8 +72,8 @@ function completeTask(product) {
                     {{ product.done ? "未完了に戻す" : "完了する" }}
                   </v-btn>
                 </div>
-              </v-card>
-            </nuxt-link>
+              </nuxt-link>
+            </v-card>
           </template>
         </v-hover>
       </div>
