@@ -64,9 +64,8 @@ function completeTask(todo) {
                   <p class="my-2">
                     {{ todo.content }}
                   </p>
-                  <p class="my-2">
-                    作成日：　{{ todo.date }}
-                  </p>
+                  <p class="my-2">期限：　　{{ todo.period }}</p>
+                  <p class="my-2">作成日：　{{ todo.date }}</p>
                   <!-- <v-btn
                     variant="outlined"
                     @click="completeTask(todo)"
@@ -74,6 +73,18 @@ function completeTask(todo) {
                   >
                     {{ todo.done ? "未完了に戻す" : "完了する" }}
                   </v-btn> -->
+                  <p
+                    width="400"
+                    v-bind="props"
+                    :class="{
+                      'text-blue-lighten-1': todo.priority === '高',
+                      'text-blue-lighten-1': todo.priority === '低',
+                    }"
+                  >
+                    優先度：{{ todo.priority }}
+                  </p>
+
+                  <p></p>
                 </div>
               </nuxt-link>
             </v-card>
