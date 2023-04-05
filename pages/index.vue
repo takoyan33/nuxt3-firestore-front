@@ -50,7 +50,10 @@ function completeTask(todo) {
           <template v-slot:default="{ isHovering, props }">
             <v-card
               width="400"
+              raised
+              link
               v-bind="props"
+              elevation="4"
               :color="isHovering ? 'primary' : undefined"
             >
               <nuxt-link
@@ -83,8 +86,6 @@ function completeTask(todo) {
                   >
                     優先度：{{ todo.priority }}
                   </p>
-
-                  <p></p>
                 </div>
               </nuxt-link>
             </v-card>
