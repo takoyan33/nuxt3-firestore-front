@@ -13,7 +13,7 @@ initializeApp({
 
 export default async (request: any, response: any) => {
   const db = getFirestore();
-  const productsSnap = await db.collection("products").get();
+  const productsSnap = await db.collection("todos").get();
   const productsData = productsSnap.docs.map((doc) => {
     return {
       uuid: doc.id,
