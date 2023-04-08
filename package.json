@@ -29,6 +29,8 @@
     "vue-loader": "^16.8.3"
   },
   "dependencies": {
+    "@firebase/firestore": "^3.9.0",
+    "firebase": "^9.18.0",
     "firebase-admin": "^11.5.0",
     "mdi": "^2.2.43",
     "sass": "^1.58.3",
