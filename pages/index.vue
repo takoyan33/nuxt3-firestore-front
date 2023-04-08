@@ -32,6 +32,13 @@ function completeTask(todo) {
 <template>
   <div>
     <h2 class="text-h4 text-center">Todoの一覧</h2>
+    <v-btn variant="outlined" class="my-2">
+      <nuxt-link
+        :to="'/todos/new'"
+        class="text-decoration-none text-black"
+        >タスクを新規登録する
+      </nuxt-link>
+    </v-btn>
     <p class="text-center">全{{ data.length }}件</p>
     <div class="text-center my-4">
       <v-text-field
@@ -68,7 +75,7 @@ function completeTask(todo) {
                     {{ todo.content }}
                   </p>
                   <p class="my-2">期限：　　{{ todo.period }}</p>
-                  <p class="my-2">作成日：　{{ todo.date }}</p>
+                  <!-- <p class="my-2">作成日：　{{ todo.date }}</p> -->
                   <!-- <v-btn
                     variant="outlined"
                     @click="completeTask(todo)"
