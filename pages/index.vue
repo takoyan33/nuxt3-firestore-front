@@ -1,19 +1,11 @@
 <script setup>
 import { ref, computed } from "vue";
-import { doc, onSnapshot, getDoc, updateDoc } from "firebase/firestore";
-import { db } from "../server/api/products";
 
-const { data } = useFetch("/api/products", {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json",
-    "Sort-Order": "desc",
-  },
-});
+const { data } = useFetch("/api/todos");
 
 const searchQuery = ref("");
 
-const filteredProducts = computed(() => {
+const filteredTodos = computed(() => {
   if (!data.value) {
     return [];
   }
@@ -21,24 +13,21 @@ const filteredProducts = computed(() => {
   if (!query) {
     return data.value;
   }
-  return data.value.filter((product) => {
-    return product.name.toLowerCase().includes(query);
+  return data.value.filter((todo) => {
+    return todo.name.toLowerCase().includes(query);
   });
 });
-
-async function completeTask(product) {
-  const done = !product.done;
-  const docRef = doc(db, `prodcuts`, product.uuid);
-  await updateDoc(docRef, {
-    done: done,
-  });
-}
 </script>
 
 <template>
   <div>
     <h2 class="text-h4 text-center">Todoの一覧</h2>
-    <p class="text-center">全{{ data.length }}件</p>
+    <v-btn variant="outlined" class="my-2">
+      <nuxt-link :to="'/todos/new'" class="text-decoration-none text-black"
+        >タスクを新規登録する
+      </nuxt-link>
+    </v-btn>
+    <p class="text-center">全{{ filteredTodos.length }}件</p>
     <div class="text-center my-4">
       <v-text-field
         v-model="searchQuery"
@@ -48,32 +37,57 @@ async function completeTask(product) {
 
     <div class="d-flex align-center flex-column">
       <div
-        v-for="(product, index) in filteredProducts"
-        :key="'product-' + index"
+        v-for="(todo, index) in filteredTodos"
+        :key="'todo-' + index"
         class="my-4"
       >
         <v-hover>
           <template v-slot:default="{ isHovering, props }">
             <v-card
               width="400"
+              raised
+              link
               v-bind="props"
+              elevation="4"
               :color="isHovering ? 'primary' : undefined"
             >
-              <div variant="outlined" class="col-md-4 my-4 mb-8 px-4">
-                <p class="text-h6 my-4 p-2">
-                  {{ product.name }}
-                </p>
-                <p class="my-2">
-                  {{ product.content }}
-                </p>
-                <v-btn
-                  variant="outlined"
-                  @click="completeTask(product)"
-                  class="my-2"
-                >
-                  {{ product.done ? "未完了に戻す" : "完了する" }}
-                </v-btn>
-              </div>
+              <nuxt-link
+                :to="'/todos/' + todo.uuid"
+                class="text-decoration-none text-black"
+              >
+                <div variant="outlined" class="col-md-4 my-4 mb-8 px-4">
+                  <p class="text-h6 my-4 p-2">
+                    {{ todo.name }}
+                  </p>
+                  <p class="my-2">
+                    {{ todo.content }}
+                  </p>
+                  <p class="my-2">期限：　　{{ todo.period }}</p>
+                  <!-- <p class="my-2">作成日：　{{ todo.date }}</p> -->
+
+                  <p
+                    :class="{
+                      'text-blue-lighten-1': todo.done === true,
+                      'text-red-lighten-1': todo.done === false,
+                    }"
+                  >
+                    {{ todo.done ? "未完了" : "完了" }}
+                  </p>
+
+                  <p
+                    width="400"
+                    v-bind="props"
+                    :class="{
+                      'text-blue-lighten-1': todo.priority === '高',
+                      'text-blue-lighten-1': todo.priority === '低',
+                    }"
+                  >
+                    優先度：<span class="text-lime-darken-1 font-weight-bold">{{
+                      todo.priority
+                    }}</span>
+                  </p>
+                </div>
+              </nuxt-link>
             </v-card>
           </template>
         </v-hover>

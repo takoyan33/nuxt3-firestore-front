@@ -8,6 +8,7 @@ export default defineNuxtConfig({
       title: "NuxtTodoApp",
       meta: [
         { charset: "utf-8" },
+        { name: "Nuxtodoapp", content: "Nuxt.jsのTodoアプリです" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
       ],
       // link: [
@@ -23,5 +24,5 @@ export default defineNuxtConfig({
     define: {
       "process.env.DEBUG": false,
     },
-  },
+  }
 });
