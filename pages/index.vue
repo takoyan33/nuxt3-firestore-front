@@ -1,38 +1,45 @@
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed } from 'vue'
 
-const { data } = useFetch("/api/todos");
+const { data } = useFetch('/api/todos')
 
-const searchQuery = ref("");
+const searchQuery = ref('')
 
 const filteredTodos = computed(() => {
   if (!data.value) {
-    return [];
+    return []
   }
-  const query = searchQuery.value.trim().toLowerCase();
+  const query = searchQuery.value.trim().toLowerCase()
   if (!query) {
-    return data.value;
+    return data.value
   }
   return data.value.filter((todo) => {
-    return todo.name.toLowerCase().includes(query);
-  });
-});
+    return todo.name.toLowerCase().includes(query)
+  })
+})
 </script>
 
 <template>
   <div>
-    <h2 class="text-h4 text-center">Todoの一覧</h2>
+    <h2 class="text-h4 text-center">
+      Todoの一覧
+    </h2>
     <v-btn variant="outlined" class="my-2">
-      <nuxt-link :to="'/todos/new'" class="text-decoration-none text-black"
-        >タスクを新規登録する
+      <nuxt-link
+        :to="'/todos/new'"
+        class="text-decoration-none text-black"
+      >
+        タスクを新規登録する
       </nuxt-link>
     </v-btn>
-    <p class="text-center">全{{ filteredTodos.length }}件</p>
+    <p class="text-center">
+      全{{ filteredTodos.length }}件
+    </p>
     <div class="text-center my-4">
       <v-text-field
         v-model="searchQuery"
         label="タスクを検索する"
-      ></v-text-field>
+      />
     </div>
 
     <div class="d-flex align-center flex-column">
@@ -42,7 +49,7 @@ const filteredTodos = computed(() => {
         class="my-4"
       >
         <v-hover>
-          <template v-slot:default="{ isHovering, props }">
+          <template #default="{ isHovering, props }">
             <v-card
               width="400"
               raised
@@ -62,7 +69,9 @@ const filteredTodos = computed(() => {
                   <p class="my-2">
                     {{ todo.content }}
                   </p>
-                  <p class="my-2">期限：　　{{ todo.period }}</p>
+                  <p class="my-2">
+                    期限：　　{{ todo.period }}
+                  </p>
                   <!-- <p class="my-2">作成日：　{{ todo.date }}</p> -->
 
                   <p

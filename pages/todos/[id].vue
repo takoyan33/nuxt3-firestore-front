@@ -1,41 +1,42 @@
 <script setup>
-import { doc, deleteDoc, updateDoc } from "firebase/firestore";
-import db from "../../firebase.js";
+import { doc, deleteDoc, updateDoc } from 'firebase/firestore'
+import db from '../../firebase.js'
 
-const route = useRoute();
-const { data } = useFetch(`/api/todos`);
-const router = useRouter();
+const route = useRoute()
+const { data } = useFetch('/api/todos')
+const router = useRouter()
 
-async function completeTask(todo) {
-  const done = !todo.done;
-  console.log(done);
-  const docRef = doc(db, `todos`, todo.uuid);
+async function completeTask (todo) {
+  const done = !todo.done
+  const docRef = doc(db, 'todos', todo.uuid)
   await updateDoc(docRef, {
-    done: done,
-  });
+    done
+  })
   if (done === true) {
-    alert("タスクが完了しました");
+    alert('タスクが完了しました')
   } else {
-    alert("タスクを未完了にしました");
+    alert('タスクを未完了にしました')
   }
-  location.reload();
+  location.reload()
 }
 
-async function deleteTask(todo) {
+async function deleteTask (todo) {
   try {
-    const docRef = doc(db, "todos", todo.uuid);
-    await deleteDoc(docRef);
-    alert("Todoを削除しました");
-    router.push("/");
+    const docRef = doc(db, 'todos', todo.uuid)
+    await deleteDoc(docRef)
+    alert('Todoを削除しました')
+    router.push('/')
   } catch (e) {
-    console.error("Error deleting document: ", e);
+    console.error('Error deleting document: ', e)
   }
 }
 </script>
 
 <template>
   <v-breadcrumbs class="my-4">
-    <v-breadcrumbs-item :to="{ path: '/' }">Home</v-breadcrumbs-item>
+    <v-breadcrumbs-item :to="{ path: '/' }">
+      Home
+    </v-breadcrumbs-item>
     <v-breadcrumbs-item>＞</v-breadcrumbs-item>
     <v-breadcrumbs-item>Todoの詳細</v-breadcrumbs-item>
   </v-breadcrumbs>
@@ -47,13 +48,17 @@ async function deleteTask(todo) {
           <p class="text-h6 my-4 p-2">
             {{ todo.name }}
           </p>
-          <p class="my-2">仕事内容</p>
+          <p class="my-2">
+            仕事内容
+          </p>
           <p class="my-2">
             {{ todo.content }}
           </p>
 
-          <p class="my-2">期限：　　{{ todo.period }}</p>
-          <!-- <p class="my-2">作成日：　{{ todo.date }}</p> -->
+          <p class="my-2">
+            期限：{{ todo.period }}
+          </p>
+          <!-- <p class="my-2">作成日：{{ todo.date }}</p> -->
 
           <p
             :class="{
@@ -76,7 +81,7 @@ async function deleteTask(todo) {
               todo.priority
             }}</span>
           </p>
-          <v-btn variant="outlined" @click="completeTask(todo)" class="my-2">
+          <v-btn variant="outlined" class="my-2" @click="completeTask(todo)">
             {{ todo.done ? "完了する" : "未完了に戻す" }}
           </v-btn>
 
@@ -85,12 +90,18 @@ async function deleteTask(todo) {
               :to="'/todos/edit/' + todo.uuid"
               class="text-decoration-none text-black"
             >
-              <v-btn variant="outlined" class="my-2">編集する</v-btn>
+              <v-btn variant="outlined" class="my-2">
+                編集する
+              </v-btn>
             </nuxt-link>
             <nuxt-link class="text-decoration-none text-black">
-              <v-btn variant="outlined" class="mx-2" @click="deleteTask(todo)"
-                >削除する</v-btn
+              <v-btn
+                variant="outlined"
+                class="mx-2"
+                @click="deleteTask(todo)"
               >
+                削除する
+              </v-btn>
             </nuxt-link>
           </div>
         </div>
