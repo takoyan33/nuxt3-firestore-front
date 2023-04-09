@@ -1,39 +1,42 @@
 <script setup>
-import { doc, onSnapshot, getDoc, updateDoc } from "firebase/firestore";
-import db from "../../../firebase.js";
-import { useRoute, useRouter } from "vue-router";
+import { doc, updateDoc } from 'firebase/firestore'
+import { useRoute, useRouter } from 'vue-router'
+import db from '../../../firebase.js'
 
-const route = useRoute();
-const router = useRouter();
-const { data } = useFetch(`/api/todos`);
-const content = ref("");
-const name = ref("");
-const period = ref("");
-const priority = ref("");
+const route = useRoute()
+const router = useRouter()
+const { data } = useFetch('/api/todos')
+const content = ref('')
+const name = ref('')
+const period = ref('')
+const priority = ref('')
 
 const editTodo = async () => {
-  console.log(content.value);
   try {
-    const docRef = doc(db, `todos`, route.params.id);
+    const docRef = doc(db, 'todos', route.params.id)
     await updateDoc(docRef, {
       name: name.value,
       content: content.value,
       period: period.value,
-      priority: priority.value,
-    });
-    alert("Todoを編集しました");
-    router.push('/todos/' + route.params.id);
+      priority: priority.value
+    })
+    alert('Todoを編集しました')
+    router.push('/todos/' + route.params.id)
   } catch (e) {
-    console.error("Error adding document: ", e);
+    console.e('Error adding document: ', e)
   }
-};
+}
 </script>
 
 <template>
   <v-breadcrumbs class="my-4">
-    <v-breadcrumbs-item :to="{ path: '/' }">Home</v-breadcrumbs-item>
+    <v-breadcrumbs-item :to="{ path: '/' }">
+      Home
+    </v-breadcrumbs-item>
     <v-breadcrumbs-item>＞</v-breadcrumbs-item>
-    <v-breadcrumbs-item :to="{ path: '/todos/' + route.params.id }">Todoの詳細</v-breadcrumbs-item>
+    <v-breadcrumbs-item :to="{ path: '/todos/' + route.params.id }">
+      Todoの詳細
+    </v-breadcrumbs-item>
     <v-breadcrumbs-item>＞</v-breadcrumbs-item>
     <v-breadcrumbs-item>Todoの編集</v-breadcrumbs-item>
   </v-breadcrumbs>
@@ -46,8 +49,8 @@ const editTodo = async () => {
             <label for="todoname">タスクの名前</label>
             <p>現在：{{ todo.name }}</p>
             <v-text-field
-              v-model="name"
               id="todoname"
+              v-model="name"
               class="form-control ml-4 mb-4"
               required
             />
@@ -56,19 +59,19 @@ const editTodo = async () => {
             <label for="todocontent">内容　　　　</label>
             <p>現在：{{ todo.content }}</p>
             <v-textarea
-              v-model="content"
               id="todocontent"
+              v-model="content"
               class="form-controll ml-4 mb-4"
               rows="3"
               required
-            ></v-textarea>
+            />
           </div>
           <div class="form-group">
             <label for="todoperiod">期限　　　　</label>
             <p>現在：{{ todo.period }}</p>
             <v-text-field
-              v-model="period"
               id="todoperiod"
+              v-model="period"
               type="date"
               class="form-controll ml-4 mb-4"
               required
@@ -78,13 +81,12 @@ const editTodo = async () => {
             <label for="todopriority">優先度</label>
             <p>現在：{{ todo.priority }}</p>
             <v-select
-              v-model="priority"
               id="todopriority"
+              v-model="priority"
               class="form-control ml-4 mb-4"
               :items="['☆☆☆☆☆', '☆☆☆', '☆']"
               required
-            >
-            </v-select>
+            />
           </div>
           <div class="btn btn-primary text-center m-auto">
             <v-btn type="submit" class="text-center m-auto" variant="outlined">
