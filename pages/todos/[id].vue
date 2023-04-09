@@ -1,10 +1,12 @@
 <script setup>
-import { doc, deleteDoc, updateDoc } from 'firebase/firestore'
+import { doc, getDoc, deleteDoc, updateDoc } from 'firebase/firestore'
 import db from '../../firebase.js'
 
 const route = useRoute()
-const { data } = useFetch('/api/todos')
 const router = useRouter()
+const todoRef = doc(db, 'todos', route.params.id)
+const todoSnap = await getDoc(todoRef)
+const todo = todoSnap.data()
 
 async function completeTask (todo) {
   const done = !todo.done
@@ -41,12 +43,10 @@ async function deleteTask (todo) {
     <v-breadcrumbs-item>Todoの詳細</v-breadcrumbs-item>
   </v-breadcrumbs>
 
-  <div v-for="(todo, index) in data" :key="'todo-' + index" class="my-4">
-    <div v-if="todo.uuid === route.params.id">
       <v-hover>
-        <div variant="outlined" class="col-md-4 my-4 mb-8 px-4">
+    <div variant="outlined" class="col-md-4 my-4 mb-8 px-4">
           <p class="text-h6 my-4 p-2">
-            {{ todo.name }}
+        {{ todo.name }}
           </p>
           <p class="my-2">
             仕事内容
@@ -87,7 +87,7 @@ async function deleteTask (todo) {
 
           <div class="m-2">
             <nuxt-link
-              :to="'/todos/edit/' + todo.uuid"
+              :to="'/todos/edit/' + route.params.id"
               class="text-decoration-none text-black"
             >
               <v-btn variant="outlined" class="my-2">
@@ -105,7 +105,5 @@ async function deleteTask (todo) {
             </nuxt-link>
           </div>
         </div>
-      </v-hover>
-    </div>
-  </div>
+  </v-hover>
 </template>

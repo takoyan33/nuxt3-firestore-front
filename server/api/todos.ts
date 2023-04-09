@@ -1,9 +1,7 @@
 import { getFirestore } from 'firebase-admin/firestore'
-import { initializeApp, getApps, cert } from 'firebase-admin/app'
+import { initializeApp } from 'firebase-admin/app'
 import firebaseAdmin from 'firebase-admin'
 const credential = firebaseAdmin.credential
-
-const apps = getApps()
 
 initializeApp({
   credential: credential.cert(
@@ -11,7 +9,7 @@ initializeApp({
   )
 })
 
-export default async (request: any, response: any) => {
+export default async () => {
   const db = getFirestore()
   const productsSnap = await db.collection('todos').get()
   const productsData = productsSnap.docs.map((doc) => {

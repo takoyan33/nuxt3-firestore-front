@@ -1,15 +1,17 @@
 <script setup>
-import { doc, updateDoc } from 'firebase/firestore'
+import { doc, updateDoc, getDoc } from 'firebase/firestore'
 import { useRoute, useRouter } from 'vue-router'
 import db from '../../../firebase.js'
 
 const route = useRoute()
 const router = useRouter()
-const { data } = useFetch('/api/todos')
 const content = ref('')
 const name = ref('')
 const period = ref('')
 const priority = ref('')
+const todoRef = doc(db, 'todos', route.params.id)
+const todoSnap = await getDoc(todoRef)
+const todo = todoSnap.data()
 
 const editTodo = async () => {
   try {
@@ -41,8 +43,6 @@ const editTodo = async () => {
     <v-breadcrumbs-item>Todoの編集</v-breadcrumbs-item>
   </v-breadcrumbs>
 
-  <div v-for="(todo, index) in data" :key="'todo-' + index" class="my-4">
-    <div v-if="todo.uuid === route.params.id">
       <div class="w-50 mx-auto">
         <form @submit.prevent="editTodo">
           <div class="form-group">
@@ -95,6 +95,4 @@ const editTodo = async () => {
           </div>
         </form>
       </div>
-    </div>
-  </div>
 </template>

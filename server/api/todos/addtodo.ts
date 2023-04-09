@@ -1,11 +1,6 @@
 import { getFirestore } from 'firebase-admin/firestore'
-import { initializeApp, getApps, cert } from 'firebase-admin/app'
-import { credential } from 'firebase-admin'
 
-const apps = getApps()
-
-export default async (request: any, response: any) => {
-  const route = useRoute()
+export default async (request: any) => {
   const db = getFirestore()
   const docId = request.body.docId // POSTデータからdocIdを取得
   const docRef = db.collection('todos').doc(docId)
