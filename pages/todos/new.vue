@@ -6,6 +6,7 @@ const content = ref("");
 const name = ref("");
 const period = ref("");
 const priority = ref("");
+const router = useRouter();
 
 const addTodo = async () => {
   console.log(content.value);
