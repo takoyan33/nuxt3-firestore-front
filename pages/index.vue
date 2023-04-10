@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 
 const { data } = useFetch('/api/todos')
+console.log(data)
 
 const searchQuery = ref('')
 
