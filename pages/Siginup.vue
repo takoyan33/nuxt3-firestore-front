@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <h2 class="text-h4 my-4 text-center">
-      About
+      Siginup
     </h2>
     <v-card class="my-5 p-4">
       <v-card-text class="py-2">
