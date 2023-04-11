@@ -10,9 +10,9 @@ const todo = todoSnap.data()
 
 async function completeTask (todo) {
   const done = !todo.done
-  const docRef = doc(db, 'todos', todo.uuid)
+  const docRef = doc(db, 'todos', route.params.id)
   await updateDoc(docRef, {
-    done
+    done: done
   })
   if (done === true) {
     alert('タスクが完了しました')
@@ -22,9 +22,9 @@ async function completeTask (todo) {
   location.reload()
 }
 
-async function deleteTask (todo) {
+async function deleteTask () {
   try {
-    const docRef = doc(db, 'todos', todo.uuid)
+    const docRef = doc(db, 'todos', route.params.id)
     await deleteDoc(docRef)
     alert('Todoを削除しました')
     router.push('/')
