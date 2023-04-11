@@ -43,56 +43,56 @@ const editTodo = async () => {
     <v-breadcrumbs-item>Todoの編集</v-breadcrumbs-item>
   </v-breadcrumbs>
 
-      <div class="w-50 mx-auto">
-        <form @submit.prevent="editTodo">
-          <div class="form-group">
-            <label for="todoname">タスクの名前</label>
-            <p>現在：{{ todo.name }}</p>
-            <v-text-field
-              id="todoname"
-              v-model="name"
-              class="form-control ml-4 mb-4"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="todocontent">内容　　　　</label>
-            <p>現在：{{ todo.content }}</p>
-            <v-textarea
-              id="todocontent"
-              v-model="content"
-              class="form-controll ml-4 mb-4"
-              rows="3"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="todoperiod">期限　　　　</label>
-            <p>現在：{{ todo.period }}</p>
-            <v-text-field
-              id="todoperiod"
-              v-model="period"
-              type="date"
-              class="form-controll ml-4 mb-4"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="todopriority">優先度</label>
-            <p>現在：{{ todo.priority }}</p>
-            <v-select
-              id="todopriority"
-              v-model="priority"
-              class="form-control ml-4 mb-4"
-              :items="['☆☆☆☆☆', '☆☆☆', '☆']"
-              required
-            />
-          </div>
-          <div class="btn btn-primary text-center m-auto">
-            <v-btn type="submit" class="text-center m-auto" variant="outlined">
-              編集する
-            </v-btn>
-          </div>
-        </form>
+  <div class="w-50 mx-auto">
+    <form @submit.prevent="editTodo">
+      <div class="form-group">
+        <label for="todoname">タスクの名前</label>
+        <p>現在：{{ todo.name }}</p>
+        <v-text-field
+          id="todoname"
+          v-model="name"
+          class="form-control ml-4 mb-4"
+          required
+        />
       </div>
+      <div class="form-group">
+        <label for="todocontent">内容　　　　</label>
+        <p>現在：{{ todo.content }}</p>
+        <v-textarea
+          id="todocontent"
+          v-model="content"
+          class="form-controll ml-4 mb-4"
+          rows="3"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="todoperiod">期限　　　　</label>
+        <p>現在：{{ todo.period }}</p>
+        <v-text-field
+          id="todoperiod"
+          v-model="period"
+          type="date"
+          class="form-controll ml-4 mb-4"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="todopriority">優先度</label>
+        <p>現在：{{ todo.priority }}</p>
+        <v-select
+          id="todopriority"
+          v-model="priority"
+          class="form-control ml-4 mb-4"
+          :items="['☆☆☆☆☆', '☆☆☆', '☆']"
+          required
+        />
+      </div>
+      <div class="btn btn-primary text-center m-auto">
+        <v-btn type="submit" class="text-center m-auto" variant="outlined">
+          編集する
+        </v-btn>
+      </div>
+    </form>
+  </div>
 </template>

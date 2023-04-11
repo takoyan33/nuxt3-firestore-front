@@ -2,7 +2,6 @@
 import { ref, computed } from 'vue'
 
 const { data } = useFetch('/api/todos')
-console.log(data)
 
 const searchQuery = ref('')
 
@@ -103,5 +102,6 @@ const filteredTodos = computed(() => {
         </v-hover>
       </div>
     </div>
+    <Calendar :todo="data" />
   </div>
 </template>

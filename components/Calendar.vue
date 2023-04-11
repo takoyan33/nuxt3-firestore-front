@@ -1,12 +1,13 @@
 <template>
   <v-container>
-    <h2 class="text-h5 my-4 text-center">カレンダーでTodoを確認する</h2>
-    <div class="calendar" ref="calendarRef" />
+    <h2 class="text-h4 my-4 text-center">
+      カレンダーでTodoを確認する
+    </h2>
+    <div ref="calendarRef" class="calendar" />
   </v-container>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from '@vue/composition-api'
 import { Calendar } from '@fullcalendar/core'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
@@ -16,30 +17,38 @@ export default defineComponent({
   props: {
     period: {
       type: String,
-      required: true,
+      required: true
     },
     name: {
       type: String,
-      required: true,
+      required: true
     },
+    todo: {
+      type: Object,
+      required: true
+    }
   },
-  setup(props) {
+  setup (props: { todo: any[]; name: any; period: any }) {
+    const events = props.todo
+      ? props.todo.map((todo: { name: any; period: any }) => ({
+        title: todo.name,
+        start: todo.period,
+        end: todo.period
+      }))
+      : [{
+          title: props.name,
+          start: props.period,
+          end: props.period
+        }]
     const calendarRef = ref<HTMLDivElement | null>(null)
     onMounted(() => {
-      if (!calendarRef.value) { return}
       const calendar = new Calendar(calendarRef.value, {
         dateClick: (e) => {
           alert(`クリックされた日は、${e.dateStr}です。`)
         },
         plugins: [dayGridPlugin, interactionPlugin],
-        locale: 'ja', // 日本語に設定
-        events: [
-          {
-            title: props.name,
-            start:props.period,
-            end: props.period
-          }
-        ]
+        locale: 'ja',
+        events
       })
 
       calendar.render()
