@@ -60,14 +60,14 @@ async function deleteTask () {
       </p>
       <!-- <p class="my-2">作成日：{{ todo.date }}</p> -->
 
-      <p
-        :class="{
-          'text-blue-lighten-1': todo.done === true,
-          'text-red-lighten-1': todo.done === false,
-        }"
-      >
-        {{ todo.done ? "未完了" : "完了" }}
-      </p>
+        <p
+          :class="{
+            'text-red-lighten-1': todo.done === true,
+            'text-blue-lighten-1': todo.done === false,
+          }"
+        >
+          {{ todo.done ? "完了" : "未完了" }}
+        </p>
 
       <p
         width="400"
@@ -82,7 +82,7 @@ async function deleteTask () {
         }}</span>
       </p>
       <v-btn variant="outlined" class="my-2" @click="completeTask(todo)">
-        {{ todo.done ? "完了する" : "未完了に戻す" }}
+        {{ todo.done ? "未完了に戻す" : "完了にする" }}
       </v-btn>
 
       <div class="m-2">
