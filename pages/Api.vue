@@ -9,9 +9,9 @@
     <div>
       <v-text-field v-model="userId" label="IDを入力して下さい" />
       <v-btn variant="outlined" @click="getQiitaData()">
-        取得開始
+        準備中
       </v-btn>
-      <div v-if="isClick">
+      <!-- <div v-if="isClick">
         <h2 class="text-h6 my-4 text-center">
           結果
         </h2>
@@ -37,12 +37,12 @@
           <h3>記事数 {{ totalArticle }}</h3>
           <h3>LGTM数 {{ totalLGTM }}</h3>
         </div>
-      </div>
+      </div> -->
     </div>
   </v-container>
 </template>
 
-<script>
+<!-- <script>
 import axios from 'axios'
 
 export default {
@@ -83,4 +83,4 @@ export default {
     }
   }
 }
-</script>
+</script> -->
