@@ -7,5 +7,4 @@ node_modules
 .env
 dist
 .DS_Store
-firebase.js
 vuejs-app-front-firebase-adminsdk-bn6fk-a5a4028c0f.json
