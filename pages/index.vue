@@ -10,7 +10,7 @@ import db from "../firebase.js"
 
 const searchQuery = ref("");
 
-const sortOrder = ref("asc"); // or 'desc'
+const sortOrder = ref("asc")
 
 const filteredTodos = computed(() => {
   if (!data.value) {
