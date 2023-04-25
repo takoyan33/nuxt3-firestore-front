@@ -10,6 +10,7 @@ import db from "../firebase.js"
 
 console.log(data)
 
+
 const searchQuery = ref("");
 
 const sortOrder = ref("asc"); // or 'desc'
