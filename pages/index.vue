@@ -8,9 +8,6 @@ import db from "../firebase.js"
   const querySnapshot = await getDocs(q);
   const data = querySnapshot.docs.map((doc) => doc.data())
 
-console.log(data)
-
-
 const searchQuery = ref("");
 
 const sortOrder = ref("asc"); // or 'desc'
