@@ -1,0 +1,1 @@
+import{_ as n,r as o,o as c,c as s,w as a,b as e}from"./entry.f092aa9e.js";const r={},_=e("h2",{class:"text-h4 my-4 text-center"}," SignIn ",-1),i=e("p",null,"準備中です。",-1);function l(d,f){const t=o("v-container");return c(),s(t,null,{default:a(()=>[_,i]),_:1})}const h=n(r,[["render",l]]);export{h as default};

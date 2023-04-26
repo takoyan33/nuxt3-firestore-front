@@ -3,6 +3,5 @@ node_modules
 .nuxt
 .nitro
 .cache
-.output
 .DS_Store
 vuejs-app-front-firebase-adminsdk-bn6fk-a5a4028c0f.json
