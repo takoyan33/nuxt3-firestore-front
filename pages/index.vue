@@ -76,15 +76,30 @@ const filteredTodos = computed(() => {
                     {{ todo.done ? "未完了" : "完了" }}
                   </p>
 
+                   <span
+                    width="200"
+                    v-bind="props"
+                    :class="{
+                      'text-blue-lighten-1 border-blue-lighten-1': todo.category === '家事',
+                      'text-red-lighten-1 border-blue-lighten-1': todo.category === '趣味',
+                      'text-gray-lighten-1 border-blue-lighten-1': todo.category === '勉強',
+                      'text-green-lighten-1 border-blue-lighten-1': todo.category === '仕事',
+                      'text-black-lighten-1 border-blue-lighten-1': todo.category === 'その他',
+                    }"
+                  >
+                    <span class="text-lime-darken-1 font-weight-bold">{{
+                      todo.category
+                    }}</span>
+                  </span>
                   <p
-                    width="400"
+                    width="200"
                     v-bind="props"
                     :class="{
                       'text-blue-lighten-1': todo.priority === '高',
                       'text-blue-lighten-1': todo.priority === '低',
                     }"
                   >
-                    優先度：<span class="text-lime-darken-1 font-weight-bold">{{
+                    優先度<span class="text-lime-darken-1 font-weight-bold">{{
                       todo.priority
                     }}</span>
                   </p>

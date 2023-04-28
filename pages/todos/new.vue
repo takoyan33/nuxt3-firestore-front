@@ -6,6 +6,7 @@ const content = ref('')
 const name = ref('')
 const period = ref('')
 const priority = ref('')
+const category = ref('')
 const router = useRouter()
 
 const addTodo = async () => {
@@ -16,6 +17,7 @@ const addTodo = async () => {
       content: content.value,
       done: false,
       period: period.value,
+      category:category.value,
       priority: priority.value,
       date: new Date()
     })
@@ -68,6 +70,16 @@ const addTodo = async () => {
             v-model="period"
             type="date"
             class="form-controll ml-4 mb-4"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="todocategory">カテゴリ</label>
+          <v-select
+            id="todocategory"
+            v-model="category"
+            class="form-control ml-4 mb-4"
+            :items="['家事', '趣味', '勉強', '仕事','その他']"
             required
           />
         </div>
