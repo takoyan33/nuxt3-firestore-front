@@ -5,7 +5,7 @@ const { data } = useFetch("/api/todos");
 
 const searchQuery = ref("");
 
-const sortOrder = ref("asc"); // or 'desc'
+const sortOrder = ref("新しい順"); 
 
 const filteredTodos = computed(() => {
   if (!data.value) {
@@ -15,9 +15,9 @@ const filteredTodos = computed(() => {
   let filtered = data.value.filter((todo) => {
     return todo.name.toLowerCase().includes(query);
   });
-  if (sortOrder.value === "asc") {
+  if (sortOrder.value === "古い順") {
     filtered = filtered.sort((a, b) => a.period.localeCompare(b.period));
-  } else if (sortOrder.value === "desc") {
+  } else if (sortOrder.value === "新しい順") {
     filtered = filtered.sort((a, b) => b.period.localeCompare(a.period));
   }
   return filtered;
@@ -26,7 +26,7 @@ const filteredTodos = computed(() => {
 
 <template>
   <div>
-    <h2 class="text-h4 text-center">未完了のTodoの一覧</h2>
+    <h2 class="text-h4 text-center">Todoの一覧</h2>
     <v-btn variant="outlined" class="my-2">
       <nuxt-link :to="'/todos/new'" class="text-decoration-none text-black">
         タスクを新規登録する
@@ -36,6 +36,13 @@ const filteredTodos = computed(() => {
     <div class="text-center my-4">
       <v-text-field v-model="searchQuery" label="タスクを検索する" />
     </div>
+
+      <v-select
+        v-model="sortOrder"
+        :items="['古い順', '新しい順']"
+        label="並び替え"
+        outlined
+      />
 
     <div class="d-flex align-center flex-column">
       <div
@@ -76,7 +83,7 @@ const filteredTodos = computed(() => {
                     {{ todo.done ? "未完了" : "完了" }}
                   </p>
 
-                   <span
+                  <span
                     width="200"
                     v-bind="props"
                     :class="{
