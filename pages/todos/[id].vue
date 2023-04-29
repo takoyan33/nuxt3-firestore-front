@@ -64,7 +64,7 @@ async function deleteTask () {
       <p class="my-2" :class="{ 'text-decoration-line-through': formattedDate > todo.period }">
         期限：{{ todo.period }}
       </p>
-      <!-- <p class="my-2">作成日：{{ todo.date }}</p> -->
+      <p class="my-2">作成日：{{ todo.date }}</p>
 
       <p
         :class="{

@@ -23,9 +23,9 @@ const addTodo = async () => {
       content: content.value,
       done: false,
       period: period.value,
-      category:category.value,
+      category: category.value,
       priority: priority.value,
-      date:formattedDate
+      date: formattedDate
     })
     console.log('Document written with ID: ', docRef.id)
     alert('投稿しました')

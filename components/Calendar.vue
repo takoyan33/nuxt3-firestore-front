@@ -29,16 +29,23 @@ export default defineComponent({
     }
   },
   setup (props: { todo: any[]; name: any; period: any }) {
+    const now = new Date()
+    const year = now.getFullYear()
+    const month = String(now.getMonth() + 1).padStart(2, '0')
+    const day = String(now.getDate()).padStart(2, '0')
+    const formattedDate = `${year}-${month}-${day}`
     const events = props.todo
       ? props.todo.map((todo: { name: any; period: any }) => ({
         title: todo.name,
         start: todo.period,
-        end: todo.period
+        end: todo.period,
+        color: formattedDate > todo.period ? 'grey' : 'blue'
       }))
       : [{
           title: props.name,
           start: props.period,
-          end: props.period
+          end: props.period,
+          color: formattedDate > props.period ? 'grey' : 'blue'
         }]
     const calendarRef = ref<HTMLDivElement | null>(null)
     onMounted(() => {
