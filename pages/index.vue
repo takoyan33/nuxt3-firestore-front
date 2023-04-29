@@ -5,9 +5,18 @@ const { data } = useFetch("/api/todos");
 
 const searchQuery = ref("");
 
+const now = new Date()
+const year = now.getFullYear()
+const month = String(now.getMonth() + 1).padStart(2, '0')
+const day = String(now.getDate()).padStart(2, '0')
+const formattedDate = `${year}-${month}-${day}`
+
+
 const sortOrder = ref("新しい順"); 
+const sortDone = ref("全て表示"); 
 
 const filteredTodos = computed(() => {
+
   if (!data.value) {
     return [];
   }
@@ -15,6 +24,20 @@ const filteredTodos = computed(() => {
   let filtered = data.value.filter((todo) => {
     return todo.name.toLowerCase().includes(query);
   });
+
+  if (sortDone.value === "完了") {
+    filtered = filtered.filter((todo) => {
+      return todo.done === true;
+    });
+  } else if (sortDone.value === "未完了") {
+    filtered = filtered.filter((todo) => {
+      return todo.done === false;
+    });
+  } else if (sortDone.value === "全て表示") {
+    filtered = filtered.filter((todo) => {
+      return todo.done === true || todo.done === false;
+    });
+  }
   if (sortOrder.value === "古い順") {
     filtered = filtered.sort((a, b) => a.period.localeCompare(b.period));
   } else if (sortOrder.value === "新しい順") {
@@ -38,6 +61,13 @@ const filteredTodos = computed(() => {
     </div>
 
       <v-select
+        v-model="sortDone"
+        :items="['完了', '未完了','全て表示']"
+        label="全て表示"
+        outlined
+      />
+
+      <v-select
         v-model="sortOrder"
         :items="['古い順', '新しい順']"
         label="並び替え"
@@ -58,12 +88,14 @@ const filteredTodos = computed(() => {
               link
               v-bind="props"
               elevation="4"
+              :class="{'bg-grey-lighten-1': todo.done === true}"
               :color="isHovering ? 'purple lighten-7' : 'white'"
             >
               <nuxt-link
                 :to="'/todos/' + todo.uuid"
                 class="text-decoration-none text-black"
               >
+
                 <div variant="outlined" class="col-md-4 my-4 mb-8 px-4">
                   <p class="text-h6 my-4 p-2">
                     {{ todo.name }}
@@ -71,16 +103,18 @@ const filteredTodos = computed(() => {
                   <p class="my-2">
                     {{ todo.content }}
                   </p>
-                  <p class="my-2">期限：　　{{ todo.period }}</p>
+                  <p class="my-2" :class="{ 'text-decoration-line-through': formattedDate > todo.period }">
+                    期限：{{ todo.period }}
+                  </p>
                   <!-- <p class="my-2">作成日：{{ todo.date }}</p> -->
 
                   <p
                     :class="{
-                      'text-blue-lighten-1': todo.done === true,
-                      'text-red-lighten-1': todo.done === false,
+                      'text-red-lighten-1': todo.done === true,
+                      'text-blue-lighten-1': todo.done === false,
                     }"
                   >
-                    {{ todo.done ? "未完了" : "完了" }}
+                    {{ todo.done ? "完了" : "未完了" }}
                   </p>
 
                   <span
@@ -120,3 +154,4 @@ const filteredTodos = computed(() => {
     <Calendar :todo="data" />
   </div>
 </template>
+

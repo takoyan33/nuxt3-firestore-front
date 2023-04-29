@@ -9,6 +9,12 @@ const priority = ref('')
 const category = ref('')
 const router = useRouter()
 
+const now = new Date()
+const year = now.getFullYear()
+const month = String(now.getMonth() + 1).padStart(2, '0')
+const day = String(now.getDate()).padStart(2, '0')
+const formattedDate = `${year}-${month}-${day}`
+
 const addTodo = async () => {
   console.log(content.value)
   try {
@@ -19,7 +25,7 @@ const addTodo = async () => {
       period: period.value,
       category:category.value,
       priority: priority.value,
-      date: new Date()
+      date:formattedDate
     })
     console.log('Document written with ID: ', docRef.id)
     alert('投稿しました')

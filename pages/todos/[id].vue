@@ -8,6 +8,12 @@ const todoRef = doc(db, 'todos', route.params.id)
 const todoSnap = await getDoc(todoRef)
 const todo = todoSnap.data()
 
+const now = new Date()
+const year = now.getFullYear()
+const month = String(now.getMonth() + 1).padStart(2, '0')
+const day = String(now.getDate()).padStart(2, '0')
+const formattedDate = `${year}-${month}-${day}`
+
 async function completeTask (todo) {
   const done = !todo.done
   const docRef = doc(db, 'todos', route.params.id)
@@ -55,21 +61,20 @@ async function deleteTask () {
         {{ todo.content }}
       </p>
 
-      <p class="my-2">
+      <p class="my-2" :class="{ 'text-decoration-line-through': formattedDate > todo.period }">
         期限：{{ todo.period }}
       </p>
       <!-- <p class="my-2">作成日：{{ todo.date }}</p> -->
 
       <p
         :class="{
-          'text-blue-lighten-1': todo.done === true,
-          'text-red-lighten-1': todo.done === false,
+          'text-red-lighten-1': todo.done === true,
+          'text-blue-lighten-1': todo.done === false,
         }"
       >
-        {{ todo.done ? "未完了" : "完了" }}
+        {{ todo.done ? "完了" : "未完了" }}
       </p>
-
-            <span
+    <span
       width="200"
       v-bind="props"
       :class="{
@@ -97,7 +102,7 @@ async function deleteTask () {
         }}</span>
       </p>
       <v-btn variant="outlined" class="my-2" @click="completeTask(todo)">
-        {{ todo.done ? "完了する" : "未完了に戻す" }}
+        {{ todo.done ? "未完了に戻す" : "完了する" }}
       </v-btn>
 
       <div class="m-2">
