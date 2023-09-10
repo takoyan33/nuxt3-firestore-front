@@ -1,13 +1,8 @@
 <template>
   <article>
-    <my-header
-      :user="user"
-      @login="onLogin"
-      @logout="onLogout"
-      @createAccount="onCreateAccount"
-    />
+    <my-header :user="user" @login="onLogin" @logout="onLogout" @createAccount="onCreateAccount" />
 
-    <section>
+    <section class="storybook-page">
       <h2>Pages in Storybook</h2>
       <p>
         We recommend building UIs with a
@@ -69,8 +64,8 @@ export default {
 
   data() {
     return {
-      user: null
-    }
+      user: null,
+    };
   },
 
   methods: {
