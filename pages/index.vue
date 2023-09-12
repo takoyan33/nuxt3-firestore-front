@@ -5,18 +5,16 @@ const { data } = useFetch("/api/todos");
 
 const searchQuery = ref("");
 
-const now = new Date()
-const year = now.getFullYear()
-const month = String(now.getMonth() + 1).padStart(2, '0')
-const day = String(now.getDate()).padStart(2, '0')
-const formattedDate = `${year}-${month}-${day}`
+const now = new Date();
+const year = now.getFullYear();
+const month = String(now.getMonth() + 1).padStart(2, "0");
+const day = String(now.getDate()).padStart(2, "0");
+const formattedDate = `${year}-${month}-${day}`;
 
-
-const sortOrder = ref("新しい順"); 
-const sortDone = ref("全て表示"); 
+const sortOrder = ref("新しい順");
+const sortDone = ref("全て表示");
 
 const filteredTodos = computed(() => {
-
   if (!data.value) {
     return [];
   }
@@ -45,6 +43,12 @@ const filteredTodos = computed(() => {
   }
   return filtered;
 });
+
+function formatDate(dateString) {
+  const options = { year: "numeric", month: "long", day: "numeric" };
+  const date = new Date(dateString);
+  return date.toLocaleDateString("ja-JP", options);
+}
 </script>
 
 <template>
@@ -60,19 +64,19 @@ const filteredTodos = computed(() => {
       <v-text-field v-model="searchQuery" label="タスクを検索する" />
     </div>
 
-      <v-select
-        v-model="sortDone"
-        :items="['完了', '未完了','全て表示']"
-        label="全て表示"
-        outlined
-      />
+    <v-select
+      v-model="sortDone"
+      :items="['完了', '未完了', '全て表示']"
+      label="全て表示"
+      outlined
+    />
 
-      <v-select
-        v-model="sortOrder"
-        :items="['古い順', '新しい順']"
-        label="並び替え"
-        outlined
-      />
+    <v-select
+      v-model="sortOrder"
+      :items="['古い順', '新しい順']"
+      label="並び替え"
+      outlined
+    />
 
     <div class="d-flex align-center flex-column">
       <div
@@ -88,14 +92,13 @@ const filteredTodos = computed(() => {
               link
               v-bind="props"
               elevation="4"
-              :class="{'bg-grey-lighten-1': todo.done === true}"
+              :class="{ 'bg-grey-lighten-1': todo.done === true }"
               :color="isHovering ? 'purple lighten-7' : 'white'"
             >
               <nuxt-link
                 :to="'/todos/' + todo.uuid"
                 class="text-decoration-none text-black"
               >
-
                 <div variant="outlined" class="col-md-4 my-4 mb-8 px-4">
                   <p class="text-h6 my-4 p-2">
                     {{ todo.name }}
@@ -103,8 +106,14 @@ const filteredTodos = computed(() => {
                   <p class="my-2">
                     {{ todo.content }}
                   </p>
-                  <p class="my-2" :class="{ 'text-decoration-line-through': formattedDate > todo.period }">
-                    期限：{{ todo.period }}
+                  <p
+                    class="my-2"
+                    :class="{
+                      'text-decoration-line-through':
+                        formattedDate > todo.period,
+                    }"
+                  >
+                    期限：{{ formatDate(todo.period) }}
                   </p>
 
                   <p
@@ -120,11 +129,16 @@ const filteredTodos = computed(() => {
                     width="200"
                     v-bind="props"
                     :class="{
-                      'text-blue-lighten-1 border-blue-lighten-1': todo.category === '家事',
-                      'text-red-lighten-1 border-blue-lighten-1': todo.category === '趣味',
-                      'text-gray-lighten-1 border-blue-lighten-1': todo.category === '勉強',
-                      'text-green-lighten-1 border-blue-lighten-1': todo.category === '仕事',
-                      'text-black-lighten-1 border-blue-lighten-1': todo.category === 'その他',
+                      'text-blue-lighten-1 border-blue-lighten-1':
+                        todo.category === '家事',
+                      'text-red-lighten-1 border-blue-lighten-1':
+                        todo.category === '趣味',
+                      'text-gray-lighten-1 border-blue-lighten-1':
+                        todo.category === '勉強',
+                      'text-green-lighten-1 border-blue-lighten-1':
+                        todo.category === '仕事',
+                      'text-black-lighten-1 border-blue-lighten-1':
+                        todo.category === 'その他',
                     }"
                   >
                     <span class="text-lime-darken-1 font-weight-bold">{{
@@ -153,4 +167,3 @@ const filteredTodos = computed(() => {
     <Calendar :todo="data" :date="formattedDate" />
   </div>
 </template>
-
