@@ -95,7 +95,7 @@ const addTodo = async () => {
             id="todopriority"
             v-model="priority"
             class="form-control ml-4 mb-4"
-            :items="['☆☆☆☆☆', '☆☆☆', '☆']"
+            :items="['★★★★★', '★★★', '★']"
             required
           />
         </div>

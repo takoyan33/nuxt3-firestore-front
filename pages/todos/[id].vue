@@ -92,7 +92,7 @@ function formatDate(dateString) {
         期限：{{ formatDate(todo.period) }}
       </p>
       <p class="my-2">作成日：{{ formatDate(todo.date) }}</p>
-      <p class="my-2">作成から {{ daysAgo }} 日前</p>
+      <p class="my-2">作成から {{ daysAgo }} 日</p>
       <p
         width="400"
         v-bind="props"
