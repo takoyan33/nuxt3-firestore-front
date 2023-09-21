@@ -132,21 +132,17 @@ function formatDate(dateString) {
                     width="200"
                     v-bind="props"
                     :class="{
-                      'text-blue-lighten-1 border-blue-lighten-1':
-                        todo.category === '家事',
-                      'text-red-lighten-1 border-blue-lighten-1':
-                        todo.category === '趣味',
-                      'text-gray-lighten-1 border-blue-lighten-1':
-                        todo.category === '勉強',
-                      'text-green-lighten-1 border-blue-lighten-1':
-                        todo.category === '仕事',
-                      'text-black-lighten-1 border-blue-lighten-1':
-                        todo.category === 'その他',
+                      'bg-deep-orange-darken-3': todo.category === '家事',
+                      'bg-deep-purple-darken-3': todo.category === '趣味',
+                      'bg-deep-blue-darken-3': todo.category === '勉強',
+                      'bg-green-darken-3': todo.category === '仕事',
+                      'bg-deep-red-darken-3': todo.category === 'その他',
                     }"
                   >
-                    <span class="text-lime-darken-1 font-weight-bold">{{
-                      todo.category
-                    }}</span>
+                    <span
+                      class="text-white font-weight-bold px-4 py-4 rounded-lg"
+                      >#{{ todo.category }}</span
+                    >
                   </span>
                   <p
                     width="200"

@@ -60,10 +60,27 @@ function formatDate(dateString) {
   </v-breadcrumbs>
   <v-hover>
     <div variant="outlined" class="col-md-4 my-4 mb-8 px-4">
-      <p class="text-h6 my-4 p-2">
+      <p class="text-h4 my-4 p-2">
         {{ todo.name }}
       </p>
-      <p class="my-2">仕事内容</p>
+      <p class="my-2 text-h6">カテゴリ</p>
+      <span
+        width="200"
+        v-bind="props"
+        :class="{
+          'bg-deep-orange-darken-3': todo.category === '家事',
+          'bg-deep-purple-darken-3': todo.category === '趣味',
+          'bg-deep-blue-darken-3': todo.category === '勉強',
+          'bg-green-darken-3': todo.category === '仕事',
+          'bg-deep-red-darken-3': todo.category === 'その他',
+        }"
+      >
+        <span class="text-white font-weight-bold px-4 py-4 rounded-lg"
+          >#{{ todo.category }}</span
+        >
+      </span>
+
+      <p class="my-2 text-h6">内容</p>
       <p class="my-2">
         {{ todo.content }}
       </p>
@@ -76,32 +93,6 @@ function formatDate(dateString) {
       </p>
       <p class="my-2">作成日：{{ formatDate(todo.date) }}</p>
       <p class="my-2">作成から {{ daysAgo }} 日前</p>
-
-      <p
-        :class="{
-          'text-red-lighten-1': todo.done === true,
-          'text-blue-lighten-1': todo.done === false,
-        }"
-      >
-        {{ todo.done ? "完了" : "未完了" }}
-      </p>
-      <span
-        width="200"
-        v-bind="props"
-        :class="{
-          'text-blue-lighten-1 border-blue-lighten-1': todo.category === '家事',
-          'text-red-lighten-1 border-blue-lighten-1': todo.category === '趣味',
-          'text-gray-lighten-1 border-blue-lighten-1': todo.category === '勉強',
-          'text-green-lighten-1 border-blue-lighten-1':
-            todo.category === '仕事',
-          'text-black-lighten-1 border-blue-lighten-1':
-            todo.category === 'その他',
-        }"
-      >
-        <span class="text-lime-darken-1 font-weight-bold">{{
-          todo.category
-        }}</span>
-      </span>
       <p
         width="400"
         v-bind="props"
@@ -113,6 +104,14 @@ function formatDate(dateString) {
         優先度：<span class="text-lime-darken-1 font-weight-bold">{{
           todo.priority
         }}</span>
+      </p>
+      <p
+        :class="{
+          'text-red-lighten-1': todo.done === true,
+          'text-blue-lighten-1': todo.done === false,
+        }"
+      >
+        {{ todo.done ? "完了" : "未完了" }}
       </p>
       <v-btn variant="outlined" class="my-2" @click="completeTask(todo)">
         {{ todo.done ? "未完了に戻す" : "完了する" }}
