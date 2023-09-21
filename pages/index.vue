@@ -53,31 +53,34 @@ function formatDate(dateString) {
 
 <template>
   <div>
-    <h2 class="text-h4 text-center">Todoの一覧</h2>
     <v-btn variant="outlined" class="my-2">
       <nuxt-link :to="'/todos/new'" class="text-decoration-none text-black">
         タスクを新規登録する
       </nuxt-link>
     </v-btn>
-    <p class="text-center">全{{ filteredTodos.length }}件</p>
-    <div class="text-center my-4">
-      <v-text-field v-model="searchQuery" label="タスクを検索する" />
+
+    <div class="d-flex justify-center align-center m-auto">
+      <div class="w-25 mx-2 text-center my-4">
+        <v-text-field v-model="searchQuery" label="タスクを検索する" />
+      </div>
+      <div class="w-25 mx-2">
+        <v-select
+          v-model="sortDone"
+          :items="['完了', '未完了', '全て表示']"
+          label="全て表示"
+          outlined
+        />
+      </div>
+      <div class="w-25 mx-2">
+        <v-select
+          v-model="sortOrder"
+          :items="['古い順', '新しい順']"
+          label="並び替え"
+          outlined
+        />
+      </div>
     </div>
-
-    <v-select
-      v-model="sortDone"
-      :items="['完了', '未完了', '全て表示']"
-      label="全て表示"
-      outlined
-    />
-
-    <v-select
-      v-model="sortOrder"
-      :items="['古い順', '新しい順']"
-      label="並び替え"
-      outlined
-    />
-
+    <p class="text-center">全{{ filteredTodos.length }}件</p>
     <div class="d-flex align-center flex-column">
       <div
         v-for="(todo, index) in filteredTodos"

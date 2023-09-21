@@ -5,10 +5,10 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: 'NuxtTodoApp',
+      title: 'EasyToDo',
       meta: [
         { charset: 'utf-8' },
-        { name: 'Nuxtodoapp', content: 'Nuxt.jsのTodoアプリです' },
+        { name: 'EasyToDo', content: 'Nuxt.jsのTodoアプリです' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' }
       ]
       // link: [

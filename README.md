@@ -1,12 +1,12 @@
 ## プロジェクトのタイトル
 
-Nuxt todo App
+EasyToDo
 
 https://vuejs-app-front.web.app/
 
 ## プロジェクトの概要説明
 
-Nuxt todo Appは、Nuxt3を用いたTodoサイトです。
+EasyToDoは、Nuxt3を用いたTodoサイトです。
 
 ## 使用言語、環境
 

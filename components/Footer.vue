@@ -1,10 +1,10 @@
 <template>
   <div
-    class="bg-purple-darken-2 text-center mx-auto w-100"
+    class="bg-blue-grey-darken-3 text-center mx-auto w-100 py-2"
   >
-    <h4 class="text-center">
-      &copy; {{ new Date().getFullYear() }} Nuxt Todo App
-    </h4>
+    <p class="text-center">
+      &copy; {{ new Date().getFullYear() }} Easy To Do
+    </p>
   </div>
 </template>
 

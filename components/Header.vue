@@ -1,9 +1,9 @@
 <template>
-  <div class="bg-purple-darken-2">
+  <div class="bg-blue-grey-darken-3">
     <v-container class="d-flex justify-space-between">
       <h4 class="text-h5 pt-2 pb-2 ml-16">
         <NuxtLink :to="`/`" class="text-purple-lighten-5 text-decoration-none"
-          >Nuxt Todo App
+          >Easy To Do
         </NuxtLink>
       </h4>
       <div class="d-flex justify-space-between">
