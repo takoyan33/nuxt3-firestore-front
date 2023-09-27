@@ -1,6 +1,6 @@
 import { describe, test, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import Footer from '../../components/Footer.vue'
+import Footer from '../../components/CommonFooter.vue'
 
 describe('Footer', () => {
   test('Footerコンポーネントが表示される', () => {

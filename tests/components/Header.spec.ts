@@ -1,6 +1,6 @@
 import { describe, test, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import Header from '../../components/Header.vue'
+import Header from '../../components/CommonHeader.vue'
 
 describe('Header', () => {
   test('Headerコンポーネントが表示される', () => {

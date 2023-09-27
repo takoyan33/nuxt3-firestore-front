@@ -2,9 +2,11 @@
   <div class="bg-blue-grey-darken-3">
     <v-container class="d-flex justify-space-between">
       <h4 class="text-h5 pt-2 pb-2 ml-16">
-        <NuxtLink :to="`/`" class="text-purple-lighten-5 text-decoration-none"
-          >Easy To Do
-        </NuxtLink>
+        <NuxtLink :to="`/`"
+          ><span class="text-purple-lighten-5 text-decoration-none"
+            >Easy To Do
+          </span></NuxtLink
+        >
       </h4>
       <div class="d-flex justify-space-between">
         <p class="mt-3">

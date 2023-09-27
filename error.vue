@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <Header />
+    <CommonHeader />
     <v-content>
       <v-main>
         <v-container>
@@ -15,7 +15,7 @@
         </v-container>
       </v-main>
     </v-content>
-    <Footer />
+    <CommonFooter />
   </v-app>
 </template>
 

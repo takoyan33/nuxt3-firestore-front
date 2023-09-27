@@ -2,6 +2,8 @@
 import { doc, updateDoc, getDoc } from 'firebase/firestore'
 import { useRoute, useRouter } from 'vue-router'
 import db from '../../../firebase.js'
+import { priorityOptions } from '../../../components/options'
+// import { defineComponent } from 'vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -28,22 +30,31 @@ const editTodo = async () => {
     console.e('Error adding document: ', e)
   }
 }
+
+// export default defineComponent({
+//   setup() {
+//     const priority = ref('')
+//     return {
+//       priority,
+//       priorityOptions,
+//     };
+//   },
+// });
+
 </script>
 
 <template>
-  <v-breadcrumbs class="my-4">
-    <v-breadcrumbs-item :to="{ path: '/' }">
-      Home
-    </v-breadcrumbs-item>
-    <v-breadcrumbs-item>＞</v-breadcrumbs-item>
-    <v-breadcrumbs-item :to="{ path: '/todos/' + route.params.id }">
-      Todoの詳細
-    </v-breadcrumbs-item>
-    <v-breadcrumbs-item>＞</v-breadcrumbs-item>
-    <v-breadcrumbs-item>Todoの編集</v-breadcrumbs-item>
-  </v-breadcrumbs>
-
   <div class="w-50 mx-auto">
+    <v-breadcrumbs class="my-4">
+      <v-breadcrumbs-item :to="{ path: '/' }"> Home </v-breadcrumbs-item>
+      <v-breadcrumbs-item>＞</v-breadcrumbs-item>
+      <v-breadcrumbs-item :to="{ path: '/todos/' + route.params.id }">
+        Todoの詳細
+      </v-breadcrumbs-item>
+      <v-breadcrumbs-item>＞</v-breadcrumbs-item>
+      <v-breadcrumbs-item>Todoの編集</v-breadcrumbs-item>
+    </v-breadcrumbs>
+
     <form @submit.prevent="editTodo">
       <div class="form-group">
         <label for="todoname">タスクの名前</label>
@@ -56,7 +67,7 @@ const editTodo = async () => {
         />
       </div>
       <div class="form-group">
-        <label for="todocontent">内容　　　　</label>
+        <label for="todocontent">内容   </label>
         <p>現在：{{ todo.content }}</p>
         <v-textarea
           id="todocontent"
@@ -67,7 +78,7 @@ const editTodo = async () => {
         />
       </div>
       <div class="form-group">
-        <label for="todoperiod">期限　　　　</label>
+        <label for="todoperiod">期限   </label>
         <p>現在：{{ todo.period }}</p>
         <v-text-field
           id="todoperiod"
@@ -84,7 +95,7 @@ const editTodo = async () => {
           id="todopriority"
           v-model="priority"
           class="form-control ml-4 mb-4"
-          :items="['☆☆☆☆☆', '☆☆☆', '☆']"
+          :items="priorityOptions"
           required
         />
       </div>

@@ -60,7 +60,7 @@ const addTodo = async () => {
           />
         </div>
         <div class="form-group">
-          <label for="todocontent">内容　　　　</label>
+          <label for="todocontent">内容   </label>
           <v-textarea
             id="todocontent"
             v-model="content"
@@ -70,7 +70,7 @@ const addTodo = async () => {
           />
         </div>
         <div class="form-group">
-          <label for="todoperiod">期限　　　　</label>
+          <label for="todoperiod">期限   </label>
           <v-text-field
             id="todoperiod"
             v-model="period"
