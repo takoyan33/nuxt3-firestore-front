@@ -163,6 +163,6 @@ function formatDate (dateString) {
         </v-hover>
       </div>
     </div>
-    <Calendar :todo="data" :date="formattedDate" />
+    <CommonCalendar :todo="data" :date="formattedDate" />
   </div>
 </template>

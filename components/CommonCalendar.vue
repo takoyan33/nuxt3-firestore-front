@@ -24,7 +24,7 @@ export default defineComponent({
       required: true
     },
     todo: {
-      type: Object,
+      type: Array,
       required: true
     }
   },
@@ -49,7 +49,7 @@ export default defineComponent({
         }]
     const calendarRef = ref<HTMLDivElement | null>(null)
     onMounted(() => {
-      const calendar = new Calendar(calendarRef.value, {
+      const calendar = new Calendar(calendarRef.value!, { // 型アサーションを追加
         dateClick: (e) => {
           alert(`クリックされた日は、${e.dateStr}です。`)
         },

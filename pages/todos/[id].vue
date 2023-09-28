@@ -53,6 +53,7 @@ function formatDate (dateString) {
 </script>
 
 <template>
+<div>
   <v-breadcrumbs class="my-4">
     <v-breadcrumbs-item :to="{ path: '/' }">
       Home
@@ -142,5 +143,6 @@ function formatDate (dateString) {
       </div>
     </div>
   </v-hover>
-  <CommonCalendar :period="todo.period" :name="todo.name" />
+    <CommonCalendar :period="todo.period" :name="todo.name" />
+  </div>
 </template>
