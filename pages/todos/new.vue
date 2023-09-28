@@ -1,13 +1,13 @@
 <script setup>
 import { collection, addDoc } from 'firebase/firestore'
 import db from '../../firebase.js'
-
+import { categoryOptions, priorityOptions } from '../../components/options'
 const content = ref('')
 const name = ref('')
 const period = ref('')
-const priority = ref('')
 const category = ref('')
 const router = useRouter()
+const priority = ref(null)
 
 const now = new Date()
 const year = now.getFullYear()
@@ -16,7 +16,6 @@ const day = String(now.getDate()).padStart(2, '0')
 const formattedDate = `${year}-${month}-${day}`
 
 const addTodo = async () => {
-  console.log(content.value)
   try {
     const docRef = await addDoc(collection(db, 'todos'), {
       name: name.value,
@@ -85,7 +84,7 @@ const addTodo = async () => {
             id="todocategory"
             v-model="category"
             class="form-control ml-4 mb-4"
-            :items="['家事', '趣味', '勉強', '仕事','その他']"
+            :items="categoryOptions"
             required
           />
         </div>
@@ -95,7 +94,7 @@ const addTodo = async () => {
             id="todopriority"
             v-model="priority"
             class="form-control ml-4 mb-4"
-            :items="['★★★★★', '★★★', '★']"
+            :items="priorityOptions"
             required
           />
         </div>

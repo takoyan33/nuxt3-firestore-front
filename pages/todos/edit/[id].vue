@@ -3,7 +3,6 @@ import { doc, updateDoc, getDoc } from 'firebase/firestore'
 import { useRoute, useRouter } from 'vue-router'
 import db from '../../../firebase.js'
 import { priorityOptions } from '../../../components/options'
-// import { defineComponent } from 'vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -30,17 +29,6 @@ const editTodo = async () => {
     console.e('Error adding document: ', e)
   }
 }
-
-// export default defineComponent({
-//   setup() {
-//     const priority = ref('')
-//     return {
-//       priority,
-//       priorityOptions,
-//     };
-//   },
-// });
-
 </script>
 
 <template>
