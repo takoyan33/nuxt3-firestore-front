@@ -49,6 +49,7 @@ function formatDate (dateString) {
   const date = new Date(dateString)
   return date.toLocaleDateString('ja-JP', options)
 }
+
 </script>
 
 <template>
@@ -80,87 +81,24 @@ function formatDate (dateString) {
         />
       </div>
     </div>
-    <p class="text-center">全{{ filteredTodos.length }}件</p>
+    <p class="text-center">
+      全{{ filteredTodos.length }}件
+    </p>
     <div class="d-flex align-center flex-column">
       <div
         v-for="(todo, index) in filteredTodos"
         :key="'todo-' + index"
         class="my-4"
       >
-        <v-hover>
-          <template #default="{ isHovering, props }">
-            <v-card
-              width="400"
-              raised
-              link
-              v-bind="props"
-              elevation="4"
-              :class="{ 'bg-grey-lighten-1': todo.done === true }"
-              :color="isHovering ? 'purple lighten-7' : 'white'"
-            >
-              <nuxt-link
-                :to="'/todos/' + todo.uuid"
-                class="text-decoration-none text-black"
-              >
-                <div variant="outlined" class="col-md-4 my-4 mb-8 px-4">
-                  <p class="text-h6 my-4 p-2">
-                    {{ todo.name }}
-                  </p>
-                  <p class="my-2">
-                    {{ todo.content }}
-                  </p>
-                  <p
-                    class="my-2"
-                    :class="{
-                      'text-decoration-line-through':
-                        formattedDate > todo.period,
-                    }"
-                  >
-                    期限：{{ formatDate(todo.period) }}
-                  </p>
-
-                  <p
-                    :class="{
-                      'text-red-lighten-1': todo.done === true,
-                      'text-blue-lighten-1': todo.done === false,
-                    }"
-                  >
-                    {{ todo.done ? "完了" : "未完了" }}
-                  </p>
-
-                  <span
-                    width="200"
-                    v-bind="props"
-                    :class="{
-                      'bg-deep-orange-darken-3': todo.category === '家事',
-                      'bg-deep-purple-darken-3': todo.category === '趣味',
-                      'bg-deep-blue-darken-3': todo.category === '勉強',
-                      'bg-green-darken-3': todo.category === '仕事',
-                      'bg-deep-red-darken-3': todo.category === 'その他',
-                    }"
-                  >
-                    <span
-                      class="text-white font-weight-bold px-4 py-4 rounded-lg"
-                      >#{{ todo.category }}</span
-                    >
-                  </span>
-                  <p
-                    width="200"
-                    v-bind="props"
-                    :class="{
-                      'text-blue-lighten-1': todo.priority === '高',
-                      'text-blue-lighten-1': todo.priority === '低',
-                    }"
-                  >
-                    優先度<span class="text-lime-darken-1 font-weight-bold">{{
-                      todo.priority
-                    }}</span>
-                  </p>
-                </div>
-              </nuxt-link>
-            </v-card>
-          </template>
-        </v-hover>
+        <CommonCard
+          :done="todo.done"
+          :uuid="todo.uuid"
+          :name="todo.name"
+          :content="todo.content"
+          :period="formatDate(todo.period)"
+          :category="todo.category"
+          :priority="todo.priority"
+        />
       </div>
     </div>
     <CommonCalendar :todo="data" :date="formattedDate" />

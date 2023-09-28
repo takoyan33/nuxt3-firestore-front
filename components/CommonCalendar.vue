@@ -12,6 +12,7 @@ import { Calendar } from '@fullcalendar/core'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import '@fullcalendar/core/locales/ja'
+import { defineComponent, ref, onMounted } from 'vue'
 
 export default defineComponent({
   props: {
