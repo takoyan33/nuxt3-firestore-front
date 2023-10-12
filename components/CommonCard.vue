@@ -31,14 +31,19 @@
                 期限：{{ period }}
               </p>
 
-              <p
+              <span
+                width="200"
+                v-bind="props"
                 :class="{
-                  'text-red-lighten-1': done === true,
-                  'text-blue-lighten-1': done === false,
+                  'bg-deep-orange-darken-3 mx-3': done === true,
+                  'bg-deep-purple-darken-3 mx-3': done === false,
                 }"
               >
-                {{ done ? "完了" : "未完了" }}
-              </p>
+                <span
+                  class="text-white font-weight-bold px-4 py-4 rounded-lg cursor-pointer mx-3"
+                  >{{ done ? "完了" : "未完了" }}</span
+                >
+              </span>
 
               <span
                 width="200"
@@ -51,7 +56,9 @@
                   'bg-deep-red-darken-3': category === 'その他',
                 }"
               >
-                <span class="text-white font-weight-bold px-4 py-4 rounded-lg">#{{ category }}</span>
+                <span class="text-white font-weight-bold px-4 py-4 rounded-lg"
+                  >#{{ category }}</span
+                >
               </span>
               <p
                 width="200"
@@ -74,43 +81,42 @@
 </template>
 
 <script lang="ts">
-import '@fullcalendar/core/locales/ja'
-import { defineComponent } from 'vue'
+import "@fullcalendar/core/locales/ja";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   props: {
     done: {
       type: Boolean,
-      required: true
+      required: true,
     },
     uuid: {
       type: String,
-      required: true
+      required: true,
     },
     name: {
       type: String,
-      required: true
+      required: true,
     },
     todo: {
       type: String,
-      required: true
+      required: true,
     },
     period: {
       type: String,
-      required: true
+      required: true,
     },
     category: {
       type: String,
-      required: true
+      required: true,
     },
     priority: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
-  setup () {
-    return {
-    }
-  }
-})
+  setup() {
+    return {};
+  },
+});
 </script>
