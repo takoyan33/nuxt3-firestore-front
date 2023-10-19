@@ -1,49 +1,45 @@
 <script setup>
-import { collection, addDoc } from 'firebase/firestore'
-import db from '../../firebase.js'
-import { categoryOptions, priorityOptions } from '../../components/options'
-const content = ref('')
-const name = ref('')
-const period = ref('')
-const category = ref('')
-const router = useRouter()
-const priority = ref(null)
+import { collection, addDoc } from "firebase/firestore";
+import db from "../../firebase.js";
+import { categoryOptions, priorityOptions } from "../../components/options";
+const content = ref("");
+const name = ref("");
+const period = ref("");
+const category = ref("");
+const router = useRouter();
+const priority = ref(null);
 
-const now = new Date()
-const year = now.getFullYear()
-const month = String(now.getMonth() + 1).padStart(2, '0')
-const day = String(now.getDate()).padStart(2, '0')
-const formattedDate = `${year}-${month}-${day}`
+const now = new Date();
+const year = now.getFullYear();
+const month = String(now.getMonth() + 1).padStart(2, "0");
+const day = String(now.getDate()).padStart(2, "0");
+const formattedDate = `${year}-${month}-${day}`;
 
 const addTodo = async () => {
   try {
-    const docRef = await addDoc(collection(db, 'todos'), {
+    const docRef = await addDoc(collection(db, "todos"), {
       name: name.value,
       content: content.value,
       done: false,
       period: period.value,
       category: category.value,
       priority: priority.value,
-      date: formattedDate
-    })
-    console.log('Document written with ID: ', docRef.id)
-    alert('投稿しました')
-    router.push('/')
+      date: formattedDate,
+    });
+    console.log("Document written with ID: ", docRef.id);
+    alert("投稿しました");
+    router.push("/");
   } catch (e) {
-    console.error('Error adding document: ', e)
+    console.error("Error adding document: ", e);
   }
-}
+};
 </script>
 
 <template>
   <div>
-    <h2 class="text-h4 text-center">
-      Todoの投稿
-    </h2>
+    <h2 class="text-h4 text-center">Todoの投稿</h2>
     <v-breadcrumbs class="my-4">
-      <v-breadcrumbs-item :to="{ path: '/' }">
-        Home
-      </v-breadcrumbs-item>
+      <v-breadcrumbs-item :to="{ path: '/' }"> Home </v-breadcrumbs-item>
       <v-breadcrumbs-item>＞</v-breadcrumbs-item>
       <v-breadcrumbs-item>Todoの投稿</v-breadcrumbs-item>
     </v-breadcrumbs>
@@ -59,7 +55,7 @@ const addTodo = async () => {
           />
         </div>
         <div class="form-group">
-          <label for="todocontent">内容   </label>
+          <label for="todocontent">内容 </label>
           <v-textarea
             id="todocontent"
             v-model="content"
@@ -69,7 +65,7 @@ const addTodo = async () => {
           />
         </div>
         <div class="form-group">
-          <label for="todoperiod">期限   </label>
+          <label for="todoperiod">期限 </label>
           <v-text-field
             id="todoperiod"
             v-model="period"
@@ -98,11 +94,10 @@ const addTodo = async () => {
             required
           />
         </div>
-        <div class="btn btn-primary text-center m-auto">
-          <v-btn type="submit" class="text-center m-auto" variant="outlined">
-            投稿する
-          </v-btn>
-        </div>
+        <CommonButton
+          :btnText="encodeURIComponent('投稿する')"
+          classNames="text-center"
+        />
       </form>
     </div>
   </div>
