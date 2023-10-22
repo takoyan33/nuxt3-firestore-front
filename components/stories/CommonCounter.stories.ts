@@ -2,8 +2,11 @@ import { Story } from '@storybook/vue3'
 import CommonCounter from '../CommonCounter.vue'
 
 export default {
-  title: 'components/Counter',
-  component: CommonCounter
+  title: 'Counter',
+  component: CommonCounter,
+  parameters: {
+    componentSubtitle: '共通ボタンは、サイト内で使われるボタンです',
+  }
 }
 
 const Template: Story<typeof CommonCounter> = () => ({

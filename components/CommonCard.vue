@@ -81,42 +81,42 @@
 </template>
 
 <script lang="ts">
-import "@fullcalendar/core/locales/ja";
-import { defineComponent } from "vue";
+import '@fullcalendar/core/locales/ja'
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   props: {
     done: {
       type: Boolean,
-      required: true,
+      required: true
     },
     uuid: {
       type: String,
-      required: true,
+      required: true
     },
     name: {
       type: String,
-      required: true,
+      required: true
     },
     todo: {
       type: String,
-      required: true,
+      required: true
     },
     period: {
       type: String,
-      required: true,
+      required: true
     },
     category: {
       type: String,
-      required: true,
+      required: true
     },
     priority: {
       type: String,
-      required: true,
-    },
+      required: true
+    }
   },
-  setup() {
-    return {};
-  },
-});
+  setup () {
+    return {}
+  }
+})
 </script>

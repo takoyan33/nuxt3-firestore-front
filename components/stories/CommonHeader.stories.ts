@@ -2,8 +2,12 @@ import { Story } from '@storybook/vue3'
 import CommonHeader from '../CommonHeader.vue'
 
 export default {
-  title: 'components/CommonHeader',
-  component: CommonHeader
+  title: 'CommonHeader',
+  component: CommonHeader,
+  tags: ['autodocs'],
+  parameters: {
+    componentSubtitle: '共通ボタンは、サイト内で使われるボタンです'
+  }
 }
 
 const Template: Story<typeof CommonHeader> = () => ({
