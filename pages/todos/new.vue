@@ -46,7 +46,7 @@ const addTodo = async () => {
     <div class="w-50 mx-auto">
       <form @submit.prevent="addTodo">
         <div class="form-group">
-          <label for="todoname">タスクの名前</label>
+          <CategoriLabel labelText="タスク名" required />
           <v-text-field
             id="todoname"
             v-model="name"
@@ -55,7 +55,7 @@ const addTodo = async () => {
           />
         </div>
         <div class="form-group">
-          <label for="todocontent">内容 </label>
+          <CategoriLabel labelText="内容" required />
           <v-textarea
             id="todocontent"
             v-model="content"
@@ -65,7 +65,7 @@ const addTodo = async () => {
           />
         </div>
         <div class="form-group">
-          <label for="todoperiod">期限 </label>
+          <CategoriLabel labelText="期限" required />
           <v-text-field
             id="todoperiod"
             v-model="period"
@@ -75,7 +75,7 @@ const addTodo = async () => {
           />
         </div>
         <div class="form-group">
-          <label for="todocategory">カテゴリ</label>
+          <CategoriLabel labelText="カテゴリ" required />
           <v-select
             id="todocategory"
             v-model="category"
@@ -85,7 +85,7 @@ const addTodo = async () => {
           />
         </div>
         <div class="form-group">
-          <label for="todopriority">優先度</label>
+          <CategoriLabel labelText="優先度" required />
           <v-select
             id="todopriority"
             v-model="priority"
