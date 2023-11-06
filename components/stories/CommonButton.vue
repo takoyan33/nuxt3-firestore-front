@@ -1,9 +1,7 @@
 <template>
-  <div :class="my-2">
-    <v-btn variant="outlined" class="" type="submit">
-      <nuxt-link :to="toLink" :class="'text-decoration-none text-black'">
-        登録する
-      </nuxt-link>
-    </v-btn>
+  <div class="">
+    <button :class="'text-decoration-none text-white bg-blue-grey-darken-3 pa-2'">
+      <nuxt-link :to="toLink"> 登録する </nuxt-link>
+    </button>
   </div>
 </template>

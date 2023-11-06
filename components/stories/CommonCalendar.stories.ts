@@ -6,7 +6,7 @@ export default {
   component: CommonCalendar,
   tags: ['autodocs'],
   parameters: {
-    componentSubtitle: '共通ボタンは、サイト内で使われるボタンです'
+    componentSubtitle: 'カレンダーは、サイト内で使われるボタンです'
   }
 }
 
@@ -15,4 +15,5 @@ const Template: Story<typeof CommonCalendar> = () => ({
   template: '<CommonCalendar />'
 })
 
+/* aaaaa */
 export const Default = Template.bind({})

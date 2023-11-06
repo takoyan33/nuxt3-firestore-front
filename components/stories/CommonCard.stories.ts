@@ -27,7 +27,7 @@ const Template: Story<typeof CommonCard> = (args, { argTypes }) => ({
   },
 });
 
-export const Default = Template.bind({});
+export const Defaultsss = Template.bind({});
 Default.args = {
   done: true,
   uuid: "1",
