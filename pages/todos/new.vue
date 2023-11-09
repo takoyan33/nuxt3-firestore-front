@@ -47,32 +47,24 @@ const addTodo = async () => {
       <form @submit.prevent="addTodo">
         <div class="form-group">
           <CategoriLabel labelText="タスク名" required />
-          <v-text-field
-            id="todoname"
-            v-model="name"
-            class="form-control ml-4 mb-4"
-            required
-          />
+          <CommonTextarea
+            labelText="todoname"
+            classNames="form-control ml-4 mb-4"
+            required />
         </div>
         <div class="form-group">
           <CategoriLabel labelText="内容" required />
-          <v-textarea
-            id="todocontent"
-            v-model="content"
-            class="form-controll ml-4 mb-4"
-            rows="3"
-            required
-          />
+          <CommonTextarea
+            labelText="todocontent"
+            classNames="form-control ml-4 mb-4"
+            required />
         </div>
         <div class="form-group">
           <CategoriLabel labelText="期限" required />
-          <v-text-field
-            id="todoperiod"
-            v-model="period"
-            type="date"
-            class="form-controll ml-4 mb-4"
-            required
-          />
+         <CommonTextarea
+            labelText="todoperiod"
+            classNames="form-control ml-4 mb-4"
+            required />
         </div>
         <div class="form-group">
           <CategoriLabel labelText="カテゴリ" required />
