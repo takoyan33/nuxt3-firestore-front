@@ -47,24 +47,54 @@ const addTodo = async () => {
       <form @submit.prevent="addTodo">
         <div class="form-group">
           <CategoriLabel labelText="タスク名" required />
-          <CommonTextarea
-            labelText="todoname"
-            classNames="form-control ml-4 mb-4"
-            required />
+          <input
+            id="todoname"
+            v-model="name"
+            class="block w-100 py-2 mb-4 text-base placeholder-gray-500 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            required
+          />
+          <!-- <CommonInput
+            v-model:name="name"
+            vModel="name"
+            labelText="掃除する"
+            classNames="form-control"
+            type="text"
+            required
+          /> -->
         </div>
         <div class="form-group">
           <CategoriLabel labelText="内容" required />
-          <CommonTextarea
-            labelText="todocontent"
-            classNames="form-control ml-4 mb-4"
-            required />
+          <v-textarea
+            id="todocontent"
+            v-model="content"
+            class="form-controll ml-4 mb-4"
+            required
+          />
+          <!-- <CommonTextarea
+            v-model:content="content"
+            vModel="content"
+            labelText="一階を掃除する"
+            classNames="form-control"
+            required
+          /> -->
         </div>
         <div class="form-group">
           <CategoriLabel labelText="期限" required />
-         <CommonTextarea
-            labelText="todoperiod"
-            classNames="form-control ml-4 mb-4"
-            required />
+          <input
+            id="todoperiod"
+            v-model="period"
+            type="date"
+            class="block w-100 py-2 mb-4 text-base placeholder-gray-500 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            required
+          />
+          <!-- <CommonInput
+            v-model:period="period"
+            vModel="period"
+            labelText="2023/01/01"
+            classNames="form-control"
+            type="date"
+            required
+          /> -->
         </div>
         <div class="form-group">
           <CategoriLabel labelText="カテゴリ" required />
@@ -75,6 +105,12 @@ const addTodo = async () => {
             :items="categoryOptions"
             required
           />
+          <!-- <CommonVselected
+            v-model="category"
+            selectId="todocategory"
+            :options="categoryOptions"
+            :required="true"
+          /> -->
         </div>
         <div class="form-group">
           <CategoriLabel labelText="優先度" required />
@@ -85,6 +121,12 @@ const addTodo = async () => {
             :items="priorityOptions"
             required
           />
+          <!-- <CommonVselected
+            v-model="category"
+            selectId="todocategory"
+            :options="priorityOptions"
+            :required="true"
+          /> -->
         </div>
         <CommonButton
           :btnText="encodeURIComponent('投稿する')"

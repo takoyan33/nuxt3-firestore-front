@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed } from "vue";
+import { completeOptions, orderOptions } from "../components/options";
 
 const { data } = useFetch("/api/todos");
 
@@ -57,6 +58,7 @@ function formatDate(dateString) {
       :btnText="encodeURIComponent('タスクを新規登録する')"
       :toLink="'/todos/new'"
     />
+    <CommonButton :btnText="encodeURIComponent('ダークモードに')" />
     <div class="d-flex justify-center align-center m-auto">
       <div class="w-25 mx-2 text-center my-4">
         <v-text-field v-model="searchQuery" label="タスクを検索する" />
@@ -64,7 +66,7 @@ function formatDate(dateString) {
       <div class="w-25 mx-2">
         <v-select
           v-model="sortDone"
-          :items="['完了', '未完了', '全て表示']"
+          :items="completeOptions"
           label="全て表示"
           outlined
         />
@@ -72,7 +74,7 @@ function formatDate(dateString) {
       <div class="w-25 mx-2">
         <v-select
           v-model="sortOrder"
-          :items="['古い順', '新しい順']"
+          :items="orderOptions"
           label="並び替え"
           outlined
         />
@@ -96,6 +98,10 @@ function formatDate(dateString) {
         />
       </div>
     </div>
-    <CommonCalendar :todo="data" :date="formattedDate" />
+    <CommonCalendar
+      :todo="data"
+      :date="formattedDate"
+      name="indexのカレンダー"
+    />
   </div>
 </template>

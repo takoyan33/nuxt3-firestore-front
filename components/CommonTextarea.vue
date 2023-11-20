@@ -1,13 +1,11 @@
 <template>
-  <div>
-    <textarea
-      :class="classNames"
-      :required="required"
-      :aria-label="labelText"
-      :placeholder="labelText"
-      class="block w-100 px-3 py-2 text-base placeholder-gray-500 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-    />
-  </div>
+  <textarea
+    :class="classNames"
+    :required="required"
+    :type="text"
+    :placeholder="labelText"
+    class="block w-100 py-2 mb-4 text-base placeholder-gray-500 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+  />
 </template>
 
 <script lang="ts">
@@ -17,20 +15,20 @@ export default defineComponent({
   props: {
     labelText: {
       type: String,
-      required: true
+      required: true,
     },
     classNames: {
       type: String,
-      required: false
+      required: false,
     },
     required: {
       type: Boolean,
       required: false,
-      default: false
-    }
+      default: false,
+    },
   },
-  setup () {
-    return {}
-  }
-})
+  setup() {
+    return {};
+  },
+});
 </script>

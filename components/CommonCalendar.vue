@@ -50,7 +50,7 @@ export default defineComponent({
         }]
     const calendarRef = ref<HTMLDivElement | null>(null)
     onMounted(() => {
-      const calendar = new Calendar(calendarRef.value!, { // 型アサーションを追加
+      const calendar = new Calendar(calendarRef.value!, {
         dateClick: (e) => {
           alert(`クリックされた日は、${e.dateStr}です。`)
         },

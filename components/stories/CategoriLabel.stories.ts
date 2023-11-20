@@ -14,7 +14,7 @@ const Template: Story<typeof CategoriLabel> = (args, { argTypes }) => ({
   components: { CategoriLabel },
   props: Object.keys(argTypes),
   template:
-    '<CategoriLabel :labelText="labelText" :classNames="classNames" :required=false />',
+    '<CategoriLabel :labelText="labelText" :classNames="classNames" :required=required />',
   setup() {
     return { ...args };
   },

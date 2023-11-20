@@ -1,31 +1,43 @@
 <template>
-  <label :class="'my-2 mx-auto' + classNames">
-    {{ decodeURIComponent(labelText) }}
-    <span v-if="required" class="text-red-darken-1">*</span>
-  </label>
+  <select
+    :id="selectId"
+    v-model="vModel"
+    :class="
+      'block w-100 py-2 mb-4  text-base placeholder-gray-500 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm' +
+      classNames
+    "
+    :required="required"
+  >
+    <option v-for="option in options" :key="option" :value="option">
+      {{ option }}
+    </option>
+  </select>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue"
+import { defineComponent } from "vue";
 
 export default defineComponent({
   props: {
-    labelText: {
+    vModel: {
+      required: true,
+    },
+    selectId: {
       type: String,
-      required: true
+      required: true,
+    },
+    options: {
+      type: Array,
+      required: true,
     },
     classNames: {
       type: String,
-      required: false
+      default: "",
     },
     required: {
       type: Boolean,
-      required: false,
-      default: false
-    }
+      default: false,
+    },
   },
-  setup () {
-    return {}
-  }
-})
+});
 </script>

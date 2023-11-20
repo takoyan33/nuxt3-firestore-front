@@ -104,7 +104,7 @@ export default defineComponent({
     },
     period: {
       type: String,
-      required: true
+      required: false
     },
     category: {
       type: String,

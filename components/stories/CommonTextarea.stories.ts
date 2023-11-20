@@ -14,7 +14,7 @@ const Template: Story<typeof CommonTextarea> = (args, { argTypes }) => ({
   components: { CommonTextarea },
   props: Object.keys(argTypes),
   template:
-    '<CommonTextarea :labelText="labelText" :classNames="classNames" :required=false />',
+    '<CommonTextarea :labelText="labelText" :classNames="classNames" :required=required />',
   setup() {
     return { ...args };
   },
@@ -28,10 +28,10 @@ textarea.args = {
   required: false
 };
 
-/** 必須のラベル */
-// export const requiredLabel = Template.bind({});
-// requiredLabel.args = {
-//   labelText: "パスワード",
-//   classNames: "YourClassNames",
-//   required: true
-// }
+/** 必須のtextarea */
+export const requiredLabel = Template.bind({});
+requiredLabel.args = {
+  labelText: "パスワード",
+  classNames: "YourClassNames",
+  required: true
+}
