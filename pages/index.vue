@@ -50,6 +50,11 @@ function formatDate(dateString) {
   const date = new Date(dateString);
   return date.toLocaleDateString("ja-JP", options);
 }
+
+const isDarkMode = ref(false);
+function toggleDarkMode() {
+  this.isDarkMode = !this.isDarkMode;
+}
 </script>
 
 <template>
@@ -58,50 +63,53 @@ function formatDate(dateString) {
       :btnText="encodeURIComponent('タスクを新規登録する')"
       :toLink="'/todos/new'"
     />
-    <CommonButton :btnText="encodeURIComponent('ダークモードに')" />
-    <div class="d-flex justify-center align-center m-auto">
-      <div class="w-25 mx-2 text-center my-4">
-        <v-text-field v-model="searchQuery" label="タスクを検索する" />
+    <!-- <CommonButton :btnText="encodeURIComponent('ダークモードに')" /> -->
+    <button @click="toggleDarkMode">ダークモードに</button>
+    <div>
+      <div class="d-flex justify-center align-center m-auto">
+        <div class="w-25 mx-2 text-center my-4">
+          <v-text-field v-model="searchQuery" label="タスクを検索する" />
+        </div>
+        <div class="w-25 mx-2">
+          <v-select
+            v-model="sortDone"
+            :items="completeOptions"
+            label="全て表示"
+            outlined
+          />
+        </div>
+        <div class="w-25 mx-2">
+          <v-select
+            v-model="sortOrder"
+            :items="orderOptions"
+            label="並び替え"
+            outlined
+          />
+        </div>
       </div>
-      <div class="w-25 mx-2">
-        <v-select
-          v-model="sortDone"
-          :items="completeOptions"
-          label="全て表示"
-          outlined
-        />
+      <p class="text-center">全{{ filteredTodos.length }}件</p>
+      <div class="d-flex align-center flex-column">
+        <div
+          v-for="(todo, index) in filteredTodos"
+          :key="'todo-' + index"
+          class="my-4"
+        >
+          <CommonCard
+            :done="todo.done"
+            :uuid="todo.uuid"
+            :name="todo.name"
+            :content="todo.content"
+            :period="formatDate(todo.period)"
+            :category="todo.category"
+            :priority="todo.priority"
+          />
+        </div>
       </div>
-      <div class="w-25 mx-2">
-        <v-select
-          v-model="sortOrder"
-          :items="orderOptions"
-          label="並び替え"
-          outlined
-        />
-      </div>
+      <CommonCalendar
+        :todo="data"
+        :date="formattedDate"
+        name="indexのカレンダー"
+      />
     </div>
-    <p class="text-center">全{{ filteredTodos.length }}件</p>
-    <div class="d-flex align-center flex-column">
-      <div
-        v-for="(todo, index) in filteredTodos"
-        :key="'todo-' + index"
-        class="my-4"
-      >
-        <CommonCard
-          :done="todo.done"
-          :uuid="todo.uuid"
-          :name="todo.name"
-          :content="todo.content"
-          :period="formatDate(todo.period)"
-          :category="todo.category"
-          :priority="todo.priority"
-        />
-      </div>
-    </div>
-    <CommonCalendar
-      :todo="data"
-      :date="formattedDate"
-      name="indexのカレンダー"
-    />
   </div>
 </template>

@@ -1,7 +1,6 @@
 <template>
   <div :class="'my-2 mx-auto' + classNames">
     <button
-      variant="outlined"
       class=""
       type="submit"
       @click="handleButtonClick"

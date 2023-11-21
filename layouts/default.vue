@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-app>
-      <CommonHeader />
+      <CommonHeader :isDarkMode="false" />
       <v-content>
         <v-main>
           <v-container>
