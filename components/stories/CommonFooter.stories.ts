@@ -1,18 +1,32 @@
-import { Story } from '@storybook/vue3'
-import CommonFooter from '../CommonFooter.vue'
+import { Story } from "@storybook/vue3";
+import CommonFooter from "../CommonFooter.vue";
 
 export default {
-  title: 'CommonFooter',
+  title: "CommonFooter",
   component: CommonFooter,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   parameters: {
-    componentSubtitle: '共通ボタンは、サイト内で使われるボタンです',
-  }
-}
+    componentSubtitle: "フッターです",
+  },
+};
 
-const Template: Story<typeof CommonFooter> = () => ({
+const Template: Story<typeof CommonFooter> = (args, { argTypes }) => ({
   components: { CommonFooter },
-  template: '<CommonFooter />'
-})
+  props: Object.keys(argTypes),
+  template: "<CommonFooter :isDarkMode=isDarkMode />",
+  setup() {
+    return { ...args };
+  },
+});
 
-export const Default = Template.bind({})
+/** 通常のフッター */
+export const Default = Template.bind({});
+Default.args = {
+  isDarkMode: false,
+};
+
+/** ダークモードのフッター */
+export const DarkDefault = Template.bind({});
+DarkDefault.args = {
+  isDarkMode: true,
+};

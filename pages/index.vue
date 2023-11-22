@@ -64,7 +64,6 @@ function toggleDarkMode() {
       :toLink="'/todos/new'"
     />
     <!-- <CommonButton :btnText="encodeURIComponent('ダークモードに')" /> -->
-    <button @click="toggleDarkMode">ダークモードに</button>
     <div>
       <div class="d-flex justify-center align-center m-auto">
         <div class="w-25 mx-2 text-center my-4">
