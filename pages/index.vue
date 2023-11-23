@@ -1,8 +1,26 @@
 <script setup>
 import { ref, computed } from "vue";
+import { doc, getDocs, collection } from "firebase/firestore";
 import { completeOptions, orderOptions } from "../components/options";
+import db from "../firebase.js";
 
-const { data } = useFetch("/api/todos");
+const todos = ref([]);
+
+// Firestoreからデータを取得する関数
+async function fetchTodos() {
+  const querySnapshot = await getDocs(collection(db, "todos")); // "todosCollection"はFirestore内のコレクション名
+
+  const fetchedTodos = [];
+  querySnapshot.forEach((doc) => {
+    fetchedTodos.push({ id: doc.id, uuid: doc.id, ...doc.data() }); // idと各ドキュメントのデータを取得
+  });
+
+  todos.value = fetchedTodos; // 取得したデータをtodosにセット
+}
+
+onMounted(() => {
+  fetchTodos();
+});
 
 const searchQuery = ref("");
 
@@ -16,11 +34,11 @@ const sortOrder = ref("新しい順");
 const sortDone = ref("全て表示");
 
 const filteredTodos = computed(() => {
-  if (!data.value) {
+  if (!todos.value) {
     return [];
   }
   const query = searchQuery.value.trim().toLowerCase();
-  let filtered = data.value.filter((todo) => {
+  let filtered = todos.value.filter((todo) => {
     return todo.name.toLowerCase().includes(query);
   });
 
@@ -51,10 +69,6 @@ function formatDate(dateString) {
   return date.toLocaleDateString("ja-JP", options);
 }
 
-const isDarkMode = ref(false);
-function toggleDarkMode() {
-  this.isDarkMode = !this.isDarkMode;
-}
 </script>
 
 <template>
@@ -63,7 +77,6 @@ function toggleDarkMode() {
       :btnText="encodeURIComponent('タスクを新規登録する')"
       :toLink="'/todos/new'"
     />
-    <!-- <CommonButton :btnText="encodeURIComponent('ダークモードに')" /> -->
     <div>
       <div class="d-flex justify-center align-center m-auto">
         <div class="w-25 mx-2 text-center my-4">
