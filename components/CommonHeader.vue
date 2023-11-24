@@ -8,14 +8,14 @@
     <v-container class="d-flex justify-space-between">
       <h4 class="text-h5 pt-2 pb-2 ml-16">
         <NuxtLink :to="`/`" class="text-decoration-none">
-          <span
+          <h4
             :class="{
               'text-blue-grey-lighten-4 text-decoration-none mr-16': isDarkMode,
               'text-grey-darken-4 text-decoration-none mr-16': !isDarkMode,
             }"
           >
             <strong> Easy To Do </strong>
-          </span>
+          </h4>
         </NuxtLink>
       </h4>
       <div class="d-flex justify-space-between">

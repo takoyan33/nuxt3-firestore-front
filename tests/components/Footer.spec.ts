@@ -10,6 +10,6 @@ describe('Footer', () => {
 
   test('タイトルが表示される', () => {
     const wrapper = mount(Footer)
-    expect(wrapper.find('h4').text()).toContain('Nuxt Todo App')
+    expect(wrapper.find("h4").text()).toContain("Easy To Do");
   })
 })

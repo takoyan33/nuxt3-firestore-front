@@ -5,14 +5,14 @@
       'bg-blue-grey-lighten-3 text-center mx-auto w-100 py-2': !isDarkMode,
     }"
   >
-    <p
+    <h4
       :class="{
         'text-center text-blue-grey-lighten-4': isDarkMode,
         'text-center text-grey-darken-4': !isDarkMode,
       }"
     >
       &copy; {{ new Date().getFullYear() }} Easy To Do
-    </p>
+    </h4>
   </div>
 </template>
 
