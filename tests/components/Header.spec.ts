@@ -12,4 +12,5 @@ describe('Header', () => {
     const wrapper = mount(Header)
     expect(wrapper.find("h4").text()).toContain("Easy To Do");
   })
+
 })

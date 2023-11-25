@@ -2,7 +2,7 @@
   <div :class="'my-2 mx-auto' + classNames">
     <button
       :class="{
-        'bg-white  pa-2 rounded-lg': isDarkMode,
+        'bg-white pa-2 rounded-lg': isDarkMode,
         'bg-blue-grey-lighten-3  pa-2 rounded-lg': !isDarkMode,
       }"
       type="submit"
@@ -11,7 +11,7 @@
       <nuxt-link
         :to="toLink"
         :class="{
-          'text-grey-darken-4  text-decoration-none ': isDarkMode,
+          'text-grey-darken-4 text-decoration-none ': isDarkMode,
           'text-grey-darken-4 text-decoration-none ': !isDarkMode,
         }"
       >

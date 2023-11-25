@@ -1,5 +1,5 @@
 <template>
-  <label :class="'my-2 mx-auto' + classNames">
+  <label :class="'my-2 mx-auto ' + classNames">
     {{ decodeURIComponent(labelText) }}
     <span v-if="required" class="text-red-darken-1">*</span>
   </label>
