@@ -1,4 +1,4 @@
-<script setup>
+<script setup  lang="ts">
 import { doc, getDoc, deleteDoc, updateDoc } from "firebase/firestore";
 import db from "../../firebase.js";
 

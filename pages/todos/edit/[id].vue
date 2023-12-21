@@ -1,4 +1,4 @@
-<script setup>
+<script setup  lang="ts">
 import { doc, updateDoc, getDoc } from 'firebase/firestore'
 import { useRoute, useRouter } from 'vue-router'
 import db from '../../../firebase.js'
