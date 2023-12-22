@@ -6,10 +6,10 @@
         EasyToDoはNuxt.jsを用いたTodoアプリです。主にTodoの検索や確認ができ、他のページでは、APIの取得ができます。
         <ul>
           <li class="py-2">
-            使用技術：フロントエンド：Vue.js,Nuxt3、バックエンド：Firestore
+            使用技術：フロントエンド：Vue.js, Nuxt3、バックエンド：FireStore
           </li>
           <li class="py-2">CSS：Vuetify</li>
-          <li class="py-2">テスト：vitest</li>
+          <li class="py-2">テスト：Vitest, Testing Library</li>
           <li class="py-2">コンポーネント管理：Storybook</li>
         </ul>
       </v-card-text>

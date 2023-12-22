@@ -1,38 +1,37 @@
 <script setup lang="ts">
-import { collection, addDoc } from "firebase/firestore";
-import db from "../../firebase.js";
-import { categoryOptions, priorityOptions } from "../../components/options";
-const content = ref("");
-const name = ref("");
-const period = ref("");
-const category = ref("");
-const router = useRouter();
-const priority = ref(null);
+import { collection, addDoc } from 'firebase/firestore'
+import db from '../../firebase.js'
+import { categoryOptions, priorityOptions } from '../../components/options'
+const content = ref('')
+const name = ref('')
+const period = ref('')
+const category = ref('')
+const router = useRouter()
+const priority = ref(null)
 
-const now = new Date();
-const year = now.getFullYear();
-const month = String(now.getMonth() + 1).padStart(2, "0");
-const day = String(now.getDate()).padStart(2, "0");
-const formattedDate = `${year}-${month}-${day}`;
+const now = new Date()
+const year = now.getFullYear()
+const month = String(now.getMonth() + 1).padStart(2, '0')
+const day = String(now.getDate()).padStart(2, '0')
+const formattedDate = `${year}-${month}-${day}`
 
 const addTodo = async () => {
   try {
-    const docRef = await addDoc(collection(db, "todos"), {
+    const docRef = await addDoc(collection(db, 'todos'), {
       name: name.value,
       content: content.value,
       done: false,
       period: period.value,
       category: category.value,
       priority: priority.value,
-      date: formattedDate,
-    });
-    console.log("Document written with ID: ", docRef.id);
-    alert("投稿しました");
-    router.push("/");
+      date: formattedDate
+    })
+    alert('投稿しました')
+    router.push('/')
   } catch (e) {
-    console.error("Error adding document: ", e);
+    console.error('Error adding document: ', e)
   }
-};
+}
 </script>
 
 <template>

@@ -10,34 +10,34 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from "vue"
 
 export default defineComponent({
   props: {
     labelText: {
       type: String,
-      required: true,
+      required: true
     },
     classNames: {
       type: String,
-      required: false,
+      required: false
     },
     required: {
       type: Boolean,
       required: false,
-      default: false,
+      default: false
     },
     type: {
       type: String,
-      required: false,
+      required: false
     },
     vModel: {
       type: String,
-      required: false,
-    },
+      required: false
+    }
   },
-  setup() {
-    return {};
-  },
-});
+  setup () {
+    return {}
+  }
+})
 </script>

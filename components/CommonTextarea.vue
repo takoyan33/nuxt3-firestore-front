@@ -15,20 +15,20 @@ export default defineComponent({
   props: {
     labelText: {
       type: String,
-      required: true,
+      required: true
     },
     classNames: {
       type: String,
-      required: false,
+      required: false
     },
     required: {
       type: Boolean,
       required: false,
-      default: false,
-    },
+      default: false
+    }
   },
-  setup() {
-    return {};
-  },
-});
+  setup () {
+    return {}
+  }
+})
 </script>
