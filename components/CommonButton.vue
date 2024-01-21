@@ -1,22 +1,26 @@
 <template>
-  <div :class="'my-2 mx-auto' + classNames">
+  <div :class="'my-2 mx-auto text-decoration-none text-center' + classNames">
     <button
       :class="{
-        'bg-white pa-2 rounded-lg': isDarkMode,
-        'bg-blue-grey-lighten-3  pa-2 rounded-lg': !isDarkMode,
+        'bg-white pa-2 rounded-lg text-decoration-none': isDarkMode,
+        'bg-blue-grey-lighten-3 pa-2 rounded-lg text-center': !isDarkMode,
       }"
       type="submit"
       @click="handleButtonClick"
     >
-      <nuxt-link
-        :to="toLink"
+      <div
         :class="{
-          'text-grey-darken-4 text-decoration-none ': isDarkMode,
+          'text-grey-darken-4 text-decoration-none': isDarkMode,
           'text-grey-darken-4 text-decoration-none ': !isDarkMode,
         }"
+        v-if="toLink"
+        @click="redirectToLink"
       >
         {{ decodeURIComponent(btnText) }}
-      </nuxt-link>
+      </div>
+      <div v-else>
+        {{ decodeURIComponent(btnText) }}
+      </div>
     </button>
   </div>
 </template>
@@ -69,6 +73,10 @@ export default defineComponent({
       // ボタンを押した後にページをリロード
       location.reload();
     },
+    redirectToLink() {
+      // ページをリダイレクト
+      this.$router.push(this.toLink);
+    },
     getCookie(name) {
       if (process.client) {
         // クライアントサイドでのみ document を使う
@@ -78,7 +86,6 @@ export default defineComponent({
       }
       return null;
     },
-
     getCookieExpiration() {
       const date = new Date();
       date.setTime(date.getTime() + 30 * 24 * 60 * 60 * 1000); // 30日間有効

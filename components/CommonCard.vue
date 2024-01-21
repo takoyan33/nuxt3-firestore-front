@@ -8,7 +8,7 @@
           link
           v-bind="props"
           elevation="4"
-          :class="{ 'bg-grey-lighten-1': done === true }"
+          :class="{ 'w-100': true, 'bg-grey-lighten-1': done === true }"
           :color="isHovering ? 'purple lighten-7' : 'white'"
         >
           <nuxt-link
@@ -53,7 +53,7 @@
                   'bg-deep-purple-darken-3': category === '趣味',
                   'bg-deep-blue-darken-3': category === '勉強',
                   'bg-green-darken-3': category === '仕事',
-                  'bg-deep-red-darken-3': category === 'その他',
+                  'bg-green-darken-3': category === 'その他',
                 }"
               >
                 <span class="text-white font-weight-bold px-4 py-4 rounded-lg"
@@ -81,42 +81,42 @@
 </template>
 
 <script lang="ts">
-import "@fullcalendar/core/locales/ja"
-import { defineComponent } from "vue"
+import "@fullcalendar/core/locales/ja";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   props: {
     done: {
       type: Boolean,
-      required: true
+      required: true,
     },
     uuid: {
       type: String,
-      required: true
+      required: true,
     },
     name: {
       type: String,
-      required: true
+      required: true,
     },
     todo: {
       type: String,
-      required: true
+      required: true,
     },
     period: {
       type: String,
-      required: false
+      required: false,
     },
     category: {
       type: String,
-      required: true
+      required: true,
     },
     priority: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
-  setup () {
-    return {}
-  }
-})
+  setup() {
+    return {};
+  },
+});
 </script>

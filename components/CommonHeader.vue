@@ -18,7 +18,7 @@
           </h4>
         </NuxtLink>
       </h4>
-      <div class="d-flex justify-space-between">
+      <div class="justify-space-between d-none d-md-flex">
         <p class="mt-3">
           <NuxtLink
             :to="`/about`"
@@ -52,6 +52,23 @@
           </button>
         </p>
       </div>
+      <!-- <v-menu offset-y>
+        <template v-slot:activator="{ on }">
+          <v-btn v-on="on" color="#9182D9">会社紹介</v-btn>
+        </template>
+        <v-list>
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title>会社情報</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title>沿革</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-menu> -->
     </v-container>
   </div>
 </template>
@@ -60,42 +77,42 @@
 export default {
   data() {
     return {
-      isDarkMode: false
-    }
+      isDarkMode: false,
+    };
   },
   mounted() {
     // クッキーから isDarkMode の値を取得
-    const isDarkModeCookie = this.getCookie("isDarkMode")
+    const isDarkModeCookie = this.getCookie("isDarkMode");
     if (isDarkModeCookie && isDarkModeCookie === "true") {
-      this.isDarkMode = true
+      this.isDarkMode = true;
     }
   },
   methods: {
-    toggleDarkMode () {
-      this.isDarkMode = !this.isDarkMode // 現在のモードをトグル
+    toggleDarkMode() {
+      this.isDarkMode = !this.isDarkMode; // 現在のモードをトグル
 
       // クッキーに isDarkMode の値を保存
       document.cookie = `isDarkMode=${
         this.isDarkMode
-      }; expires=${this.getCookieExpiration()}; path=/`
+      }; expires=${this.getCookieExpiration()}; path=/`;
       // ボタンを押した後にページをリロード
-      location.reload()
+      location.reload();
     },
-    getCookie (name) {
+    getCookie(name) {
       if (process.client) {
         // クライアントサイドでのみ document を使う
-        const value = `; ${document.cookie}`
-        const parts = value.split(`; ${name}=`)
-        if (parts.length === 2) return parts.pop().split(";").shift()
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(";").shift();
       }
-      return null
+      return null;
     },
 
-    getCookieExpiration () {
-      const date = new Date()
-      date.setTime(date.getTime() + 30 * 24 * 60 * 60 * 1000)// 30日間有効
-      return date.toUTCString()
-    }
-  }
-}
+    getCookieExpiration() {
+      const date = new Date();
+      date.setTime(date.getTime() + 30 * 24 * 60 * 60 * 1000); // 30日間有効
+      return date.toUTCString();
+    },
+  },
+};
 </script>
